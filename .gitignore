@@ -1,0 +1,13 @@
+# Dependencias y compilados (se regeneran con npm install / npm run build)
+node_modules/
+dist/
+
+# Capturas y registros de las pruebas con Playwright
+.playwright-mcp/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
