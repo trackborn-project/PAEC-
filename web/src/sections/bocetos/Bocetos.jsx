@@ -1,12 +1,24 @@
 import { motion } from 'motion/react';
 import { Parte } from '../../components/Parte.jsx';
-import { Insertar } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
+import bocetoSistema from '../../assets/boceto-sistema.webp';
+import bocetoFiltro from '../../assets/boceto-filtro.webp';
 
-// III.a Bocetos: espacios con el visor de "Vistas del prototipo" (cuadrícula técnica) hasta tener las imágenes.
+// III.a Bocetos: imágenes de Contenido/ ("Sistema - Boceto.png" y "filtro - Boceto.jpg") en el visor
+// de "Vistas del prototipo" (cuadrícula técnica). Se muestran completas (object-contain).
 const BOCETOS = [
-  { id: 'modulo', titulo: 'Módulo detector', marcador: 'BOCETO DEL MÓDULO DETECTOR' },
-  { id: 'filtro', titulo: 'Filtro de agua', marcador: 'BOCETO DEL FILTRO DE AGUA' },
+  {
+    id: 'modulo',
+    titulo: 'Módulo detector',
+    src: bocetoSistema,
+    alt: 'Boceto a línea del módulo detector: caja con pantalla y botón de encendido arriba, ventana frontal con la tarjeta electrónica, puerto USB-C, un orificio lateral y dos sondas.',
+  },
+  {
+    id: 'filtro',
+    titulo: 'Filtro de agua',
+    src: bocetoFiltro,
+    alt: 'Boceto del filtro por etapas: entrada de condensado de AC, etapa 1 de malla y carbón activo, etapa 2 de grava caliza, etapa 3 de tezontle, balde hermético de 19 L y bomba de agua para riego con ESP32.',
+  },
 ];
 
 const cuadricula = {
@@ -32,9 +44,10 @@ export default function Bocetos() {
           <motion.figure key={b.id} variants={item} className="glass relative m-0 flex h-[min(46vh,520px)] min-h-[260px] items-center justify-center overflow-hidden rounded-[32px]">
             <div aria-hidden className="absolute inset-0 opacity-[0.07]" style={cuadricula} />
             <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgb(57_255_136/0.14),transparent_70%)]" />
-            <span className="relative px-4 text-center text-[22px]">
-              <Insertar>{b.marcador}</Insertar>
-            </span>
+            {/* Hoja blanca del boceto, completa dentro del visor (deja espacio abajo para el pie) */}
+            <div className="absolute inset-x-5 bottom-14 top-5 flex items-center justify-center">
+              <img src={b.src} alt={b.alt} className="max-h-full max-w-full rounded-[18px] object-contain shadow-[0_24px_30px_rgb(0_0_0/0.5)]" draggable={false} />
+            </div>
             <figcaption className="absolute bottom-5 left-7 text-[18px] text-niebla">{b.titulo}</figcaption>
           </motion.figure>
         ))}

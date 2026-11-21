@@ -82,7 +82,7 @@ export const sections = [
     steps: 1,
     notes: [
       'Aquí van los bocetos con los que empezamos el diseño del módulo detector y del filtro.',
-      '(Espacio reservado: falta insertar las imágenes de los bocetos.)',
+      'A la izquierda, el boceto del módulo: la caja con pantalla, la tarjeta electrónica a la vista y las dos sondas. A la derecha, el boceto del filtro por etapas, con el balde y la bomba.',
     ],
   },
   {
