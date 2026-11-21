@@ -21,8 +21,7 @@ export const PARTS = [
     name: 'Botón de encendido',
     x: 43,
     y: 19.5,
-    text: 'Lleva el símbolo de encendido.',
-    missing: 'confirmar qué enciende o apaga',
+    text: 'Enciende o apaga el dispositivo: le permite descansar o ahorrar batería.',
     side: 'bottom',
   },
   {
@@ -30,8 +29,7 @@ export const PARTS = [
     name: 'Carcasa',
     x: 72,
     y: 34,
-    text: 'Caja que protege la electrónica.',
-    missing: 'material',
+    text: 'Caja que protege la electrónica. Material: MDF barnizado, aluminio y polímero de alta densidad.',
     side: 'left',
   },
   {
@@ -64,8 +62,7 @@ export const PARTS = [
     name: 'Puerto USB-C',
     x: 68.5,
     y: 52.5,
-    text: 'Conector en el costado de la caja.',
-    missing: 'confirmar uso (¿carga, programación?)',
+    text: 'Conector en el costado de la caja: alimenta el sistema electrónico.',
     side: 'left',
   },
   {
@@ -73,8 +70,7 @@ export const PARTS = [
     name: 'Orificio lateral',
     x: 74,
     y: 48.5,
-    text: 'Pequeña abertura junto al puerto USB-C.',
-    missing: 'confirmar función',
+    text: 'Deja ver un LED que se enciende en rojo o amarillo cuando hay problemas de compilación o de conexiones.',
     side: 'left',
   },
   {
@@ -82,7 +78,7 @@ export const PARTS = [
     name: 'Sondas',
     x: 66.5,
     y: 79,
-    text: 'Se entierran en la tierra de la maceta; con ellas el sensor obtiene la lectura de humedad.',
+    text: 'Miden 5 cm. Se entierran en la tierra de la maceta; con ellas el sensor obtiene la lectura de humedad.',
     side: 'left',
   },
 ];

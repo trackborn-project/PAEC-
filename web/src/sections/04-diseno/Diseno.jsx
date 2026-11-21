@@ -20,8 +20,8 @@ const VIEWS = [
     alt: 'Vista frontal: caja con la ventana transparente que deja ver la tarjeta electrónica, un bloque negro con cables y dos sondas.',
     text: 'La ventana transparente deja ver la tarjeta electrónica. Abajo salen las dos sondas que se entierran en la maceta.',
     measures: [
-      { side: 'top', label: 'ancho de la caja' },
-      { side: 'right', label: 'alto total' },
+      { side: 'top', label: 'ancho de la caja', valor: '5 cm' },
+      { side: 'right', label: 'alto total', valor: '10 cm' },
     ],
   },
   {
@@ -31,10 +31,10 @@ const VIEWS = [
     w: 128,
     h: 132,
     alt: 'Vista superior: cara cuadrada con un panel al centro y el botón de encendido a la derecha.',
-    text: 'Desde arriba se ven el panel cuadrado y el botón de encendido.',
+    text: 'Desde arriba se ven el panel cuadrado y el botón de encendido. La caja mide 5 × 5 × 5 cm.',
     measures: [
-      { side: 'top', label: 'ancho' },
-      { side: 'right', label: 'fondo' },
+      { side: 'top', label: 'ancho', valor: '5 cm' },
+      { side: 'right', label: 'fondo', valor: '5 cm' },
     ],
   },
   {
@@ -44,10 +44,10 @@ const VIEWS = [
     w: 141,
     h: 351,
     alt: 'Vista lateral: costado de la caja con un puerto USB-C y un orificio pequeño; una sonda visible.',
-    text: 'En el costado están el puerto USB-C y un orificio pequeño. Las sondas quedan una detrás de la otra.',
+    text: 'En el costado están el puerto USB-C, que alimenta la electrónica, y un orificio con un LED de aviso. Las sondas quedan una detrás de la otra.',
     measures: [
-      { side: 'top', label: 'fondo de la caja' },
-      { side: 'right', label: 'largo de las sondas' },
+      { side: 'top', label: 'fondo de la caja', valor: '5 cm' },
+      { side: 'right', label: 'largo de las sondas', valor: '5 cm' },
     ],
   },
 ];
@@ -58,7 +58,7 @@ const swap = {
   exit: { opacity: 0, scale: 1.02, filter: 'blur(6px)', transition: { duration: 0.18 } },
 };
 
-// Cota de medida (sin valor: las medidas están pendientes en notas.md).
+// Cota de medida; el valor se muestra en el panel (notas.md, "Datos técnicos pendientes").
 function Bracket({ side }) {
   const line = 'absolute border-agua/70';
   if (side === 'top')
@@ -132,7 +132,7 @@ export default function Diseno() {
           {view.measures.map((m) => (
             <div key={m.label} className="flex flex-wrap items-center justify-between gap-3 text-[24px]">
               <span>{m.label[0].toUpperCase() + m.label.slice(1)}</span>
-              <Missing>medida</Missing>
+              {m.valor ? <strong className="tabular-nums text-agua">{m.valor}</strong> : <Missing>medida</Missing>}
             </div>
           ))}
         </motion.div>

@@ -154,30 +154,46 @@ test.describe('despiece del filtro', () => {
 });
 
 test('info nueva: los datos de notas.md, filtro.jpg e inventario aparecen en la página', async ({ page }) => {
+  test.setTimeout(180_000);
   await page.goto('/#1');
   await espera(page, 800);
+  // Con las notas del presentador abiertas (N), se recorre cada paso de cada sección con →
+  // y se junta el texto de la página y de las notas.
+  await page.keyboard.press('n');
   let texto = '';
   for (let n = 1; n <= SECCIONES.length; n++) {
     await irA(page, n);
-    texto += ' ' + (await page.locator('main').textContent());
+    for (let paso = 0; paso < 12; paso++) {
+      texto += ' ' + (await page.locator('body').textContent());
+      if (n === SECCIONES.length) break;
+      await page.keyboard.press('ArrowRight');
+      await espera(page, 350);
+      if ((await page.evaluate(() => location.hash)) !== `#${n}`) break;
+    }
   }
   // Datos que se integraron (notas.md, filtro.jpg, inventario_y_costos.md).
   const esperados = [
     'The crowns', '3AMM', 'CBTis 40', 'Poco mantenimiento a las zonas verdes',
-    'Probar en tierra seca y húmeda', 'Revisar el filtro', 'Cómo observar una situación',
+    'en tierra seca y húmeda', 'Revisar el filtro', 'Cómo observar una situación',
     'Condensado de AC', 'Grava Caliza', 'Tezontle', 'Balde hermético (~19 L)',
     'Mini bomba de agua sumergible 5V', 'Módulo de relé de doble canal 5V', 'Pantalla OLED de 0.96 pulgadas',
   ];
-  // Además, cualquier dato llenado en "Datos para la Fase 3" / "Datos técnicos pendientes" de notas.md.
-  const notas = fs.readFileSync(path.join(CONTENIDO, 'notas.md'), 'utf8');
-  const bloque = notas.slice(notas.indexOf('## Datos para la Fase 3'));
-  for (const linea of bloque.split(/\r?\n/)) {
-    // Solo valores llenados: "- Etiqueta: valor" o "- valor" (las plantillas vacías se ignoran).
-    const m = linea.match(/^\s*(?:-|\d+\.)\s*(.*)$/);
-    if (!m) continue;
-    const valor = (m[1].includes(':') ? m[1].slice(m[1].indexOf(':') + 1) : m[1]).trim();
-    if (valor.length > 3 && !valor.startsWith('…')) esperados.push(valor);
-  }
+  // Datos de "Datos para la Fase 3" y "Datos técnicos pendientes" (notas.md). Se redactaron con
+  // ortografía corregida, así que se verifica cada dato clave en lugar del texto literal.
+  esperados.push(
+    // Proceso de armado
+    'Simulamos todo en digital', 'mayormente de gases', 'Ensamblamos todo lo físico',
+    // Pruebas y resultados
+    'durante 2 días', 'plagas y mosquitos', 'la pantalla reflejó los resultados', 'pH entre 8 y 9', 'agua estancada muy sucia',
+    'Miguel Ángel Fregoso', 'Thelma Minerva Gallardo', 'plantas desaladoras', '¡Es ideal para mis macetas!', 'conocidos y familiares cercanos',
+    // Problemas y soluciones, mejoras
+    'riego desmedido', 'filtra el agua de los aires acondicionados', 'adecuado en su totalidad para exteriores', 'lluvias, vientos, composta',
+    // Datos técnicos
+    'alimenta el sistema electrónico', 'rojo o amarillo', 'ahorrar batería', 'MDF barnizado, aluminio y polímero de alta densidad',
+    'estados de sequía', 'relevador', 'batería de 5', 'toma el agua del filtro', 'carbonato de calcio', 'piedra pómez',
+    'silicio, óxido de hierro, aluminio y calcio', 'bajo 15', 'notificación al teléfono',
+    'Arboleda en los andenes', 'canchas de fútbol y básquetbol', 'Casi nulo',
+  );
   const norm = (s) => s.replace(/\s+/g, ' ').toLowerCase();
   const plano = norm(texto);
   const faltan = esperados.filter((e) => !plano.includes(norm(e)));

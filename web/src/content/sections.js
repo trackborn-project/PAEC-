@@ -34,7 +34,8 @@ export const sections = [
       'Empecemos por el reto. La humedad de la tierra no siempre es fácil de distinguir a simple vista, así que es difícil saber cuándo una planta necesita agua.',
       'En nuestro plantel identificamos una necesidad: las zonas verdes reciben poco mantenimiento. Pensamos en los alumnos como las personas usuarias del prototipo, y lo probaremos en macetas.',
       'Queremos ser claros: esta necesidad todavía debe comprobarse con observación y con la opinión de quienes cuidan las plantas. Por eso la presentamos como una necesidad por validar, no como un problema ya demostrado.',
-      'Los recuadros marcados como pendientes son cifras que todavía vamos a reunir.',
+      'Las zonas verdes del plantel son la arboleda de los andenes, las áreas cerca de la cafetería y las zonas recreativas y de ejercicio, como las canchas de fútbol y básquetbol.',
+      'Hoy su riego es casi nulo. Al estudiar el riego de estas áreas tuvimos la idea de empezar este prototipo.',
     ],
   },
   {
@@ -46,7 +47,8 @@ export const sections = [
     notes: [
       'Nuestra propuesta es sencilla: observar la humedad de la tierra y regar cuando hace falta.',
       'El sistema tiene cinco partes. El sensor toma una lectura relacionada con la humedad. El ESP32 interpreta esa lectura y decide si hace falta regar. Cuando se necesita agua, se activa la bomba y el agua pasa por el filtro hacia las plantas. La pantalla muestra el estado del sistema.',
-      'Dos detalles importantes. Primero, el ESP32 da la orden, pero no alimenta directamente la bomba: para eso hay una etapa de potencia que conecta o desconecta su energía. Segundo, el filtro forma parte del recorrido del agua, no del circuito eléctrico.',
+      'Dos detalles importantes. Primero, el ESP32 da la orden, pero no alimenta directamente la bomba: para eso hay una etapa de potencia, un relevador de 3.3 a 5 volts, que conecta o desconecta su energía; la bomba se alimenta con una fuente externa, como una batería de 5 volts. Segundo, el filtro forma parte del recorrido del agua, no del circuito eléctrico.',
+      'El riego empieza cuando la lectura baja de 15 y se detiene al llegar a 100. Si no hay agua, el sistema manda una notificación al teléfono.',
       '(Haz clic en cada tarjeta para ampliarla mientras la explicas. Esc la cierra.)',
     ],
   },
@@ -61,7 +63,8 @@ export const sections = [
       'En la vista frontal se ve la ventana transparente con la tarjeta electrónica adentro y, debajo, las dos sondas que se entierran en la maceta.',
       '(→) En la vista superior están el panel cuadrado y el botón de encendido.',
       '(→) En la vista lateral se ven el puerto USB-C y un orificio pequeño; las sondas quedan una detrás de la otra.',
-      'Las medidas todavía están pendientes; las vamos a agregar cuando terminemos de documentar el prototipo.',
+      'La caja mide 5 por 5 por 5 centímetros; con las sondas, el alto total es de 10 centímetros, y las sondas miden 5.',
+      'El USB-C alimenta el sistema electrónico, y el orificio lateral deja ver un LED que se enciende en rojo o amarillo cuando hay problemas de compilación o de conexiones.',
     ],
   },
   {
@@ -72,11 +75,11 @@ export const sections = [
     steps: 11, // armado, despiece y 9 piezas
     notes: [
       'Este es el módulo armado. (→) Al separarlo vemos sus piezas.',
-      '(→ en cada pieza) Arriba está la tapa, que se retira para entrar a la caja, y junto a ella el botón de encendido.',
-      'La carcasa protege la electrónica. Adentro está la tarjeta electrónica; según nuestras notas, ahí está el ESP32, que interpreta la lectura y decide si hace falta regar.',
+      '(→ en cada pieza) Arriba está la tapa, que se retira para entrar a la caja, y junto a ella el botón de encendido, que permite al dispositivo descansar o ahorrar batería.',
+      'La carcasa, de MDF barnizado, aluminio y polímero de alta densidad, protege la electrónica. Adentro está la tarjeta electrónica; según nuestras notas, ahí está el ESP32, que interpreta la lectura y decide si hace falta regar.',
       'También hay un bloque negro conectado con cables, la ventana frontal transparente, el puerto USB-C y un orificio lateral.',
       'Abajo están las sondas: se entierran en la tierra de la maceta y con ellas el sensor obtiene la lectura.',
-      'Las piezas marcadas como pendientes son las que todavía debemos confirmar con el prototipo físico.',
+      'El bloque negro con cables está marcado como pendiente: todavía debemos confirmar qué es.',
     ],
   },
   {
@@ -89,9 +92,9 @@ export const sections = [
       'Este diagrama muestra cómo se conectan las partes. En ámbar va la señal de control, en coral la energía de la bomba y en cian el recorrido del agua.',
       '(1) El sensor, enterrado en la maceta, toma una lectura relacionada con la humedad de la tierra.',
       '(2) El ESP32 interpreta esa lectura y decide si hace falta regar.',
-      '(3) Si hace falta agua, manda la orden a la etapa de potencia, que conecta la energía de la bomba. La bomba mueve el agua, que pasa por el filtro hacia las plantas. El ESP32 da la orden, pero no alimenta directamente el motor.',
-      '(4) La pantalla comunica el estado del sistema.',
-      'La calibración de la lectura y el umbral de riego todavía deben documentarse con nuestras pruebas.',
+      '(3) Si hace falta agua, manda la orden a la etapa de potencia, un relevador, que conecta la energía de la bomba desde una batería de 5 volts. La bomba toma el agua del filtro y la lleva a las plantas. El ESP32 da la orden, pero no alimenta directamente el motor.',
+      '(4) La pantalla muestra los estados de sequía según lo que recopila el sensor.',
+      'El riego empieza bajo 15 y se detiene en 100. Todavía falta documentar cómo se calibró la escala.',
     ],
   },
   {
@@ -103,7 +106,7 @@ export const sections = [
     notes: [
       'Este es nuestro filtro de agua por etapas. (→ o la rueda del ratón separan las piezas una por una; al regresar se vuelve a armar.)',
       'Arriba está la entrada de agua: recibe el condensado del aire acondicionado.',
-      'La etapa 1 es un filtro de malla y carbón activo, para el microfiltrado. La etapa 2 es grava caliza, para ajustar el pH. La etapa 3 es piedra volcánica, el tezontle, para la mineralización y la parte biológica.',
+      'La etapa 1 filtra impurezas como tierra, insectos y piedras, y su cartucho de carbón activado elimina malos olores, residuos químicos, hongos y bacterias. La etapa 2 es grava caliza: su carbonato de calcio ajusta el pH. La etapa 3 mineraliza el agua con piedras volcánicas de nuestra localidad, como piedra pómez y tezontle, que aportan silicio, óxido de hierro, aluminio y calcio.',
       'Abajo está el balde hermético de unos 19 litros, a prueba de plagas, y la bomba de agua de 5 volts que se usa para el riego con el ESP32.',
       '(Etapa 7) Una gota recorre las etapas y pasa de turbia a limpia. (Etapa 8) El agua llena el balde y la bomba se activa para regar.',
       'Los pasos de ensamblado van de abajo hacia arriba; al hacer clic en uno, el filtro muestra cómo queda en ese paso.',
@@ -117,9 +120,9 @@ export const sections = [
     steps: 1,
     notes: [
       'Esta es una simulación de cómo responde el sistema. Muevan el control hacia la izquierda: la tierra se seca y la aguja baja.',
-      'Al cruzar el umbral se enciende la alerta de sequía y el sistema activaría la bomba.',
+      'Cuando la lectura baja de 15 se enciende la alerta de sequía y el sistema activa la bomba; el riego se detiene al llegar a 100.',
       '(Pulsa “Simular secado y riego” para ver el ciclo completo: la tierra se seca, se activa la bomba, se humedece y la bomba se detiene.)',
-      'Importante: la escala es relativa, no es un porcentaje real de humedad. El umbral y el momento en que se detiene el riego son ilustrativos; los vamos a calibrar con pruebas en tierra seca y húmeda.',
+      'Es una simulación ilustrativa con los valores que definimos; todavía falta documentar cómo se calibró la escala del sensor.',
     ],
   },
   {
@@ -142,9 +145,10 @@ export const sections = [
     mood: 0.7,
     steps: 1,
     notes: [
-      'Queremos ser honestos: todavía no hay mediciones, pruebas comparativas ni ahorro de agua documentados.',
-      'Lo que sigue es probar el sistema en tierra seca y húmeda, revisar el filtro y escuchar la opinión de posibles usuarios para mejorar el riego.',
-      'Los recuadros marcados como pendientes se van a llenar con esos resultados.',
+      'Probamos que las conexiones estuvieran correctas según la logística planeada: funcionaron como debían y la pantalla reflejó los resultados de manera correcta.',
+      'Dejamos el agua guardada durante 2 días para probar el sellado contra plagas y mosquitos.',
+      'Y medimos el pH después de filtrar agua estancada muy sucia: quedó entre 8 y 9; el agua neutra tiene 7.',
+      'También dimos a probar el prototipo a conocidos y familiares cercanos. (Lee una de las opiniones.)',
     ],
   },
   {
@@ -155,8 +159,9 @@ export const sections = [
     steps: 1,
     notes: [
       'Con este proyecto queremos aprender a observar una situación, probar una idea y usar los resultados para mejorarla.',
-      '(Toca cada tarjeta.) Un problema fue que el sketch que revisamos mostraba la lectura y la pantalla, pero no el control de la bomba; por eso hay que actualizar o confirmar el sketch y las fichas técnicas para que describan el prototipo actual.',
-      'Otro punto: la escala del sensor todavía no está calibrada, así que no la presentamos como porcentaje real de humedad.',
+      'Así lo hicimos: primero simulamos todo en digital y pulimos la logística de conexiones; luego estudiamos la contaminación del agua de los aires acondicionados, que es mayormente de gases, y teorizamos un filtro especial; al final ensamblamos todo lo físico tal como estaba planeado.',
+      '(Toca cada tarjeta.) El problema principal: la falta de mantenimiento y el riego desmedido, junto con la pérdida descuidada de agua en el plantel. La solución: un sistema que detecta cuándo un jardín necesita riego, filtra el agua de los aires acondicionados y con esa misma agua riega las plantas.',
+      'También hay que actualizar o confirmar el sketch y las fichas técnicas para que describan el prototipo actual.',
     ],
   },
   {
@@ -164,12 +169,13 @@ export const sections = [
     short: 'Mejoras',
     title: 'Mejoras futuras',
     mood: 0.9,
-    steps: 4, // un grupo de la ruta por paso
+    steps: 5, // un grupo de la ruta por paso
     notes: [
       '(→ revela cada grupo.) Primero, probar el sistema en tierra seca y húmeda y revisar el filtro.',
-      'Después, calibrar la lectura, definir el umbral de riego y documentar cuándo se activa y se detiene.',
+      'Después, documentar cómo se calibró la lectura y cuándo se activa y se detiene el riego.',
       'También queremos escuchar a posibles usuarios y comprobar si de verdad les sirve a quienes cuidan las plantas.',
-      'Y, como proyecto PAEC, identificar quiénes cuidarían las plantas, qué necesidad tienen y qué opinan del prototipo.',
+      'Como proyecto PAEC, identificar quiénes cuidarían las plantas, qué necesidad tienen y qué opinan del prototipo.',
+      'Y queremos que el sistema sea adecuado en su totalidad para exteriores: que aguante lluvias, vientos, composta y descomposición en la tierra sin afectar su funcionamiento.',
     ],
   },
   {

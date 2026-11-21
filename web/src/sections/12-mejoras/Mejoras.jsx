@@ -17,7 +17,7 @@ export default function Mejoras() {
         Mejoras futuras
       </motion.h2>
 
-      <ol className="relative grid grid-cols-1 gap-4 md:grid-cols-4">
+      <ol className="relative grid grid-cols-1 gap-4 md:grid-cols-5">
         {/* Línea de la ruta: se llena con el avance (scaleX) */}
         <div aria-hidden className="absolute left-0 right-0 top-[22px] hidden h-0.5 bg-white/10 md:block">
           <div

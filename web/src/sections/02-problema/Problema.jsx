@@ -1,7 +1,6 @@
 import { motion } from 'motion/react';
 import { CrackedSoil } from './CrackedSoil.jsx';
 import { GlassCard } from '../../components/GlassCard.jsx';
-import { Missing } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
 
 export default function Problema() {
@@ -41,11 +40,12 @@ export default function Problema() {
         <motion.div variants={item} className="grid grid-cols-2 gap-5">
           <GlassCard className="flex flex-col justify-center gap-2 px-7 py-4">
             <p className="text-[20px] text-niebla">Zonas verdes del plantel</p>
-            <Missing>cifra con fuente</Missing>
+            <p className="text-[20px] leading-snug">Arboleda en los andenes, zonas verdes cerca de la cafetería y en las zonas recreativas y de ejercicio, como las canchas de fútbol y básquetbol.</p>
           </GlassCard>
           <GlassCard className="flex flex-col justify-center gap-2 px-7 py-4">
             <p className="text-[20px] text-niebla">Riego actual</p>
-            <Missing>frecuencia observada</Missing>
+            <p className="text-[28px] font-semibold leading-tight">Casi nulo.</p>
+            <p className="text-[18px] leading-snug text-niebla">Al estudiar el riego de estas áreas surgió la idea del prototipo.</p>
           </GlassCard>
         </motion.div>
       </motion.div>

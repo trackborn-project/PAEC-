@@ -92,27 +92,41 @@ Probar el sistema en tierra seca y húmeda, revisar el filtro y escuchar la opin
 
 ## Datos para la Fase 3
 
-### Materiales (pieza | cantidad | costo MXN)
-
--
 
 ### Proceso de armado (en orden)
 
-1.
+-primero simulamos todo en digital, pulimos muy bien la logistica de conexiones, una vez teniendo esto comenzamos a estudiar el tipo de 
+contaminacion de los aires acondicionados, al ver que la contaminacion es mayormente de gases teorizamos un filtro especial para este tipo de contaminacion
+teniendo esto pasamos al ensamblado de todo lo fisico tal cual estaba planeado
 
 ### Pruebas y resultados
 
-- Qué se probó:
+- Qué se probó: Se probo que las conexiones estuvieran correctas segun la logistica planeada, tambien hicimos pruebas con el filtro, dejamos que el agua
+fluyera y estuviera guardada durante 2 dias para probar el sellado anti plagas y mosquitos, asi como tambien hicimos pruebas de alcanizacion del agua
+medimos el PH despues de el proceso de filtrado
 
-- Resultados:
+- Resultados:Los resultados fueron satisfactorios, las conexiones estaban funcionando como deberian, la pantalla reflejaba resultados de manera correcta
+y el filtro alcanilizo el agua en un 98%, es decir entre 8 y 9 puntuaciones de PH de 7 puntuaciones ideales para agua neutra, filtrando agua estancada muy
+sucia, le dimos a probar el prototipo a conocidos y familiares cercanos y eso fue lo que opinaron:
 
 - Opinión de usuarios:
 
+Miguel Angel Fregoso: "Este sistema es apto para el hogar y lugares domesticos, le da un toque de electrodomestico de alta gamma el hecho de que mande
+notificaciones al telefono cuando la plante necesita mantenimiento, por otro lado, el filtro esta muy bien hecho, es parecido a un filtro industrial 
+como los que se usan en plantas desaladoras
+
+Thelma Minerva Gallardo: "Es ideal para mis mecetas!, el sistema es adecuado para el hogar, es muy intuitivo y es ideal para personas amantes de las 
+plantas y medio ambiente, el unico defecto es que solo se puede utilizar cerca de fuentes de desperdicio de agua, y tendrias que tener tu jardin o plantas
+cerca de ese espacio"
+
 ### Problemas y soluciones
 
-- Problema: … / Solución: …
+- Problema: La falta de mantenimiento y el riego desmedido junto con la perdida de agua descuidada en el plantel / Solución: un sistema que detecta cuando 
+un jardin necesita regarse, filtra agua de los aires ahorrando recursos y de esa misma agua filtrada riega las plantas / jardines que lo necesiten
 
 ### Mejoras futuras
+Planeamos que el sistema sea adecuado en su totalidad para exteriores, es decir capaz de aguantar lluvias, vientos, introduccion de composta y descomposicion
+en la tierra sin afecciones al funcionamiento
 
 -
 
@@ -120,32 +134,42 @@ Probar el sistema en tierra seca y húmeda, revisar el filtro y escuchar la opin
 
 ## Datos técnicos pendientes
 
-- Medidas (caja ancho×alto×fondo, alto total, largo de sondas):
+- Medidas caja, XaltoXfondo = 5cm x 5cm x 5cm alto total = 10cm largo de sensores (sondas) = 5cm
 
-- Bloque negro con cables:
+- USB-C sirve para: Alimentar el sistema electronico
 
-- USB-C sirve para:
+- Orificio lateral: un led que prende en rojo o amarillo cuando hay problemas de compilacion y conexiones
 
-- Orificio lateral:
+- Botón enciende/apaga: permite al dispositivo descansar o guardar baterias
 
-- Botón enciende/apaga:
+- Material de la carcasa: MDF barnizado, Aluminio y polimero de alta densidad
 
-- Material de la carcasa:
+- Qué muestra la pantalla: Estados de resultados de sequia segun lo que recopile el sensor de humedad (sondas)
 
-- Qué muestra la pantalla:
+- Tipo de bomba: Bomba basica de 5v
 
-- Tipo de bomba:
+- Etapa de potencia: Un relevador de 3.3v a 5v
 
-- Etapa de potencia:
+- Alimentación de la bomba:una fuente externa como una bateria de 5v
 
-- Alimentación de la bomba:
+- De dónde toma el agua:La bomba toma el agua del filtro y la transporta hacia la planta
 
-- De dónde toma el agua:
+- Capas del filtro (de arriba a abajo): El filtro consta de 4 etapas, la primera (primer filtro) se encarga de filtrar impurezas
+como tierra, insectos, piedras o pedaceria a su vez que un cartucho con carbón
+activado elimina malos olores, residuos químicos hongos y bacterias en el agua; la
+segunda etapa (segundo filtro) consta de un proceso por donde fluye el agua a través
+de un filtro con grava caliza, en esta etapa se ajusta el pH del agua por el carbonato
+de calcio de la misma grava; la tercera etapa (tercer filtro) se encarga de mineralizar
+el agua con ayuda de piedras volcánicas comunes de nuestra localidad como la
+piedra pómez y tezontle, ayudando al agua con silicio, óxido de hierro, aluminio y
+calcio
 
-- Capas del filtro (de arriba a abajo):
+- Umbral de riego / cuándo se detiene: El umbral de riego esta establecido en 15 puntuaciones de sequia es decir 15%, cuando el sensor detecta menos de 15%
+de sequia manda una señal para que se riegue la planta, en caso de no haber agua manda una notificacion al telefono, el riego se detiene cuando la humedad 
+llega a 100% de humedad
 
-- Umbral de riego / cuándo se detiene:
+- Zonas verdes del plantel (dato y fuente): Arboleda en andenes de el plantel, asi como zonas verdes cerca de la cafeteria y en zonas recreativas y de ejercicio
+como las canchas de futbol y basketball
 
-- Zonas verdes del plantel (dato y fuente):
-
-- Frecuencia actual de riego:
+- Frecuencia actual de riego: Actualmente la frecuencia del riego en estas zonas es casi nula, estudiando el riego dentro de el plantel de estas areas tuvimos
+la idea de empezar este prototipo 

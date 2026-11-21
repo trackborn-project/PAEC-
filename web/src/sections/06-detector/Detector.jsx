@@ -17,12 +17,12 @@ const KIND = {
 
 const NODES = {
   sensor: { x: 160, y: 150, name: 'Sensor', sub: 'lee la tierra', tip: 'Toma una lectura relacionada con la humedad de la tierra.' },
-  esp32: { x: 540, y: 150, name: 'ESP32', sub: 'decide', tip: 'Interpreta la lectura, decide si hace falta regar y manda la orden de iniciar o detener el riego.' },
-  potencia: { x: 920, y: 150, name: 'Etapa de potencia', sub: 'conecta la energía', tip: 'Recibe la orden del ESP32 y conecta o desconecta la energía de la bomba. El inventario incluye un relé de doble canal de 5 V.', missing: 'confirmar qué hace de etapa de potencia' },
-  bomba: { x: 1310, y: 150, name: 'Bomba', sub: 'mueve el agua', tip: 'Mini bomba de agua sumergible de 5 V: impulsa el agua cuando recibe energía.' },
-  pantalla: { x: 540, y: 410, name: 'Pantalla', sub: 'muestra el estado', tip: 'Pantalla OLED de 0.96 pulgadas: comunica el estado del sistema.', missing: 'qué mensajes muestra' },
-  fuente: { x: 920, y: 410, name: 'Alimentación', sub: 'de la bomba', tip: 'La bomba necesita una alimentación capaz de mover el agua; el ESP32 no la alimenta directamente.', missing: 'fuente de alimentación' },
-  filtro: { x: 1310, y: 410, name: 'Filtro', sub: 'en el recorrido', tip: 'Tres etapas: malla y carbón activo, grava caliza y piedra volcánica (tezontle). No forma parte del circuito eléctrico.' },
+  esp32: { x: 540, y: 150, name: 'ESP32', sub: 'decide', tip: 'Interpreta la lectura y manda la orden de iniciar o detener el riego: empieza bajo 15 y se detiene al llegar a 100. Si no hay agua, manda una notificación al teléfono.' },
+  potencia: { x: 920, y: 150, name: 'Etapa de potencia', sub: 'conecta la energía', tip: 'Un relevador de 3.3 V a 5 V: recibe la orden del ESP32 y conecta o desconecta la energía de la bomba.' },
+  bomba: { x: 1310, y: 150, name: 'Bomba', sub: 'mueve el agua', tip: 'Bomba básica de 5 V: toma el agua del filtro y la lleva hacia la planta.' },
+  pantalla: { x: 540, y: 410, name: 'Pantalla', sub: 'muestra el estado', tip: 'Pantalla OLED de 0.96 pulgadas: muestra los estados de sequía según lo que recopila el sensor.' },
+  fuente: { x: 920, y: 410, name: 'Alimentación', sub: 'de la bomba', tip: 'Una fuente externa, como una batería de 5 V. El ESP32 no alimenta directamente la bomba.' },
+  filtro: { x: 1310, y: 410, name: 'Filtro', sub: 'agua de AC', tip: 'Recibe el condensado del aire acondicionado. Tres etapas: malla y carbón activo, grava caliza y piedra volcánica (tezontle). No forma parte del circuito eléctrico.' },
   plantas: { x: 1310, y: 650, name: 'Plantas', sub: 'en macetas', tip: 'El agua filtrada llega a la maceta, donde están las sondas del sensor.' },
 };
 
@@ -33,8 +33,9 @@ const LINKS = [
   { id: 'e-d', from: 'esp32', to: 'pantalla', kind: 'control' },
   { id: 'f-p', from: 'fuente', to: 'potencia', kind: 'potencia' },
   { id: 'p-b', from: 'potencia', to: 'bomba', kind: 'potencia' },
-  { id: 'b-f', from: 'bomba', to: 'filtro', kind: 'agua' },
-  { id: 'f-pl', from: 'filtro', to: 'plantas', kind: 'agua' },
+  // La bomba toma el agua del filtro y la lleva a la planta (notas.md, "De dónde toma el agua").
+  { id: 'f-b', from: 'filtro', to: 'bomba', kind: 'agua' },
+  { id: 'b-pl', from: 'bomba', to: 'plantas', kind: 'agua', path: 'M1460 150 H1484 V650 H1460' },
   // Lazo: el sensor está enterrado en la maceta.
   { id: 'pl-s', from: 'plantas', to: 'sensor', kind: 'control', path: 'M1160 650 H160 V216', dashed: true },
 ];
@@ -44,7 +45,7 @@ const STEPS = [
   { text: 'Vista general: control, energía y agua.', nodes: Object.keys(NODES), links: LINKS.map((l) => l.id) },
   { text: '1. El sensor toma una lectura relacionada con la humedad de la tierra.', nodes: ['sensor', 'plantas'], links: ['s-e', 'pl-s'] },
   { text: '2. El ESP32 interpreta la lectura y decide si hace falta regar.', nodes: ['esp32'], links: ['s-e', 'e-p'] },
-  { text: '3. Si hace falta agua, se activa la bomba y el agua pasa por el filtro hacia las plantas.', nodes: ['potencia', 'fuente', 'bomba', 'filtro', 'plantas'], links: ['e-p', 'f-p', 'p-b', 'b-f', 'f-pl'] },
+  { text: '3. Si hace falta agua, se activa la bomba: toma el agua del filtro y la lleva a las plantas.', nodes: ['potencia', 'fuente', 'bomba', 'filtro', 'plantas'], links: ['e-p', 'f-p', 'p-b', 'f-b', 'b-pl'] },
   { text: '4. La pantalla comunica el estado del sistema.', nodes: ['pantalla'], links: ['e-d'] },
 ];
 

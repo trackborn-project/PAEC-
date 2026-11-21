@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Missing } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
-import { aprendizajes, queremosAprender } from '../../content/fase3.js';
+import { aprendizajes, proceso, queremosAprender } from '../../content/fase3.js';
 import { useReduce } from '../../deck/MotionPref.jsx';
 
 // Tarjetas que giran: problema al frente, solución atrás (clic, Enter o Espacio).
@@ -53,7 +53,19 @@ export default function Aprendizajes() {
           Lo que queremos aprender: {queremosAprender.charAt(0).toLowerCase() + queremosAprender.slice(1)}
         </motion.p>
       </motion.div>
-      <motion.ul variants={container(0.25, 0.1)} initial="hidden" animate="show" className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      {/* Proceso de armado, en orden (notas.md) */}
+      <motion.ol variants={container(0.2, 0.08)} initial="hidden" animate="show" className="grid grid-cols-1 gap-3 md:grid-cols-4" aria-label="Proceso de armado">
+        {proceso.map((p, i) => (
+          <motion.li key={p.id} variants={item} className="flex gap-3 rounded-[20px] border border-white/10 px-5 py-3">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-agua/60 text-[15px] font-bold text-agua tabular-nums">{i + 1}</span>
+            <span className="flex flex-col">
+              <span className="text-[clamp(17px,1.3vw,21px)] font-bold leading-tight">{p.titulo}</span>
+              <span className="text-[clamp(15px,1vw,17px)] leading-snug text-niebla">{p.detalle}</span>
+            </span>
+          </motion.li>
+        ))}
+      </motion.ol>
+      <motion.ul variants={container(0.45, 0.1)} initial="hidden" animate="show" className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {aprendizajes.map((a, i) => (
           <FlipCard key={i} a={a} i={i} />
         ))}

@@ -5,10 +5,10 @@ import { CrackedSoil } from '../02-problema/CrackedSoil.jsx';
 import { Particles, WATER } from '../../components/Particles.jsx';
 import { Missing } from '../../components/Missing.jsx';
 
-// Simulación ilustrativa: la escala es relativa (no es porcentaje de humedad) y el umbral
-// y la condición de detención NO están calibrados; notas.md los marca como pendientes.
-const THRESHOLD = 35;
-const STOP_AT = 70;
+// Simulación ilustrativa con los valores del equipo (notas.md, "Umbral de riego"):
+// riega cuando la lectura baja de 15 y se detiene al llegar a 100. Falta documentar la calibración.
+const THRESHOLD = 15;
+const STOP_AT = 100;
 
 function Toast({ show }) {
   return (
@@ -81,7 +81,7 @@ export default function Demo() {
     if (!running) setPumpOn(dry);
   }, [dry, running]);
 
-  const state = dry ? 'Seca' : value < STOP_AT ? 'Húmeda' : 'Muy húmeda';
+  const state = dry ? 'Seca' : value < STOP_AT ? 'Húmeda' : 'Riego completo';
   const wet = value / 100;
 
   return (
@@ -140,7 +140,7 @@ export default function Demo() {
           </p>
 
           <label className="flex flex-col gap-2 text-[22px] text-niebla" data-own-keys>
-            Lectura del sensor (escala relativa)
+            Lectura del sensor (escala 0–100 del equipo)
             <input
               type="range"
               min="0"
@@ -168,7 +168,7 @@ export default function Demo() {
         </motion.div>
 
         <p className="text-[20px] leading-snug text-niebla">
-          Simulación ilustrativa. <Missing>umbral y detención calibrados</Missing>
+          Simulación ilustrativa: riega bajo 15 y se detiene en 100. <Missing>cómo se calibró la escala</Missing>
         </p>
       </div>
     </div>
