@@ -23,7 +23,6 @@ export default function Despiece() {
   const [tip, setTip] = useState(null); // { pieza, x, y }
   const lastWheel = useRef(0);
   const panelRef = useRef(null);
-  const scrollRef = useRef(null);
 
   stepRef.current = step;
   const etapa = Math.min(step, TOTAL_ETAPAS - 1);
@@ -146,15 +145,9 @@ export default function Despiece() {
   }, [auto, etapa, setStep]);
 
   // Rueda del ratón: avanza o rearma (sin salir de la sección).
-  // Al terminar la animación (última etapa), seguir bajando desplaza la diapositiva para ver los
-  // cuadros de abajo; al subir, primero regresa el desplazamiento y después rearma el filtro.
   useEffect(() => {
     const el = panelRef.current;
     const onWheel = (e) => {
-      const scroller = scrollRef.current;
-      const puedeBajar = scroller && scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight - 1;
-      if (e.deltaY > 0 && stepRef.current >= TOTAL_ETAPAS - 1 && puedeBajar) return;
-      if (e.deltaY < 0 && scroller && scroller.scrollTop > 0) return;
       e.preventDefault();
       const now = performance.now();
       if (now - lastWheel.current < WHEEL_GAP || Math.abs(e.deltaY) < 4) return;
@@ -177,19 +170,19 @@ export default function Despiece() {
   const pasoActivo = PASOS_ENSAMBLADO.find((p) => p.etapa === etapa && etapa <= PIEZAS.length);
 
   return (
-    <div ref={scrollRef} className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-24 md:grid md:grid-cols-12 md:items-center md:gap-[3vw] md:overflow-y-auto md:px-[5vw] md:pb-[5vh] md:pt-[11vh]">
-      <div className="flex flex-col gap-[2.2vh] md:col-span-5">
+    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-24 md:grid md:grid-cols-12 md:items-center md:gap-[3vw] md:overflow-hidden md:px-[5vw] md:pb-[5vh] md:pt-[11vh]">
+      <div className="flex flex-col gap-[2.2vh] [@media(max-height:950px)]:gap-[1.4vh] md:col-span-5">
         <Parte />
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}
-          className="title-width text-[clamp(36px,min(4vw,7.5vh),76px)] font-bold leading-[1.02] tracking-[-0.03em]"
+          className="title-width text-[clamp(36px,min(4vw,7.5vh),76px)] [@media(max-height:950px)]:text-[clamp(28px,3.3vw,52px)] font-bold leading-[1.02] tracking-[-0.03em]"
         >
           Despiece y ensamblado del filtro
         </motion.h2>
 
         {/* Etapa actual */}
-        <div className="glass flex flex-col gap-2 rounded-[24px] px-6 py-4" aria-live="polite">
+        <div className="glass flex flex-col gap-[clamp(4px,0.8vh,8px)] rounded-[24px] px-6 py-[clamp(10px,1.6vh,16px)]" aria-live="polite">
           <p className="text-[18px] text-niebla tabular-nums">
             Etapa {etapa} de {TOTAL_ETAPAS - 1}
           </p>
@@ -200,10 +193,10 @@ export default function Despiece() {
               animate={{ opacity: 1, y: 0, transition: { duration: 0.22, ease: [0.23, 1, 0.32, 1] } }}
               exit={{ opacity: 0, transition: { duration: 0.1 } }}
             >
-              <p className="text-[clamp(22px,1.7vw,28px)] font-bold leading-tight" data-testid="etapa-titulo">
+              <p className="text-[clamp(19px,min(1.7vw,3vh),28px)] font-bold leading-tight" data-testid="etapa-titulo">
                 {info.titulo}
               </p>
-              <p className="text-[clamp(18px,1.3vw,22px)] leading-snug text-hueso/85">{info.texto}</p>
+              <p className="text-[clamp(16px,min(1.3vw,2.3vh),22px)] leading-snug text-hueso/85">{info.texto}</p>
             </motion.div>
           </AnimatePresence>
           {/* Barra de progreso de etapas (scaleX) */}
@@ -215,11 +208,11 @@ export default function Despiece() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          <button onClick={() => { setAuto(false); setStep(Math.max(0, etapa - 1)); }} className="pressable rounded-full border border-white/15 px-5 py-2.5 text-[20px] hover:bg-white/10" aria-label="Etapa anterior">
+        <div className="flex flex-wrap gap-[clamp(6px,0.8vh,8px)]">
+          <button onClick={() => { setAuto(false); setStep(Math.max(0, etapa - 1)); }} className="pressable rounded-full border border-white/15 px-[clamp(14px,1.2vw,20px)] py-[clamp(5px,1.1vh,10px)] text-[clamp(16px,2.3vh,20px)] [@media(max-height:950px)]:px-3 [@media(max-height:950px)]:text-[15px] hover:bg-white/10" aria-label="Etapa anterior">
             ← Anterior
           </button>
-          <button onClick={() => { setAuto(false); setStep(Math.min(TOTAL_ETAPAS - 1, etapa + 1)); }} className="pressable rounded-full border border-white/15 px-5 py-2.5 text-[20px] hover:bg-white/10" aria-label="Etapa siguiente">
+          <button onClick={() => { setAuto(false); setStep(Math.min(TOTAL_ETAPAS - 1, etapa + 1)); }} className="pressable rounded-full border border-white/15 px-[clamp(14px,1.2vw,20px)] py-[clamp(5px,1.1vh,10px)] text-[clamp(16px,2.3vh,20px)] [@media(max-height:950px)]:px-3 [@media(max-height:950px)]:text-[15px] hover:bg-white/10" aria-label="Etapa siguiente">
             Siguiente →
           </button>
           <button
@@ -228,19 +221,19 @@ export default function Despiece() {
               setAuto((a) => !a);
             }}
             aria-pressed={auto}
-            className={`pressable rounded-full border px-5 py-2.5 text-[20px] font-semibold ${auto ? 'border-agua bg-agua text-subsuelo' : 'border-agua/60 text-agua hover:bg-agua/10'}`}
+            className={`pressable rounded-full border px-[clamp(14px,1.2vw,20px)] py-[clamp(5px,1.1vh,10px)] text-[clamp(16px,2.3vh,20px)] [@media(max-height:950px)]:px-3 [@media(max-height:950px)]:text-[15px] font-semibold ${auto ? 'border-agua bg-agua text-subsuelo' : 'border-agua/60 text-agua hover:bg-agua/10'}`}
           >
             {auto ? 'Pausar' : 'Reproducir'}
           </button>
-          <button onClick={() => { setAuto(false); setStep(0); }} className="pressable rounded-full border border-white/15 px-5 py-2.5 text-[20px] hover:bg-white/10" data-testid="reiniciar">
+          <button onClick={() => { setAuto(false); setStep(0); }} className="pressable rounded-full border border-white/15 px-[clamp(14px,1.2vw,20px)] py-[clamp(5px,1.1vh,10px)] text-[clamp(16px,2.3vh,20px)] [@media(max-height:950px)]:px-3 [@media(max-height:950px)]:text-[15px] hover:bg-white/10" data-testid="reiniciar">
             Reiniciar
           </button>
         </div>
 
         {/* Pasos de ensamblado: de abajo hacia arriba; clic = la animación va a esa etapa */}
         <div className="flex flex-col gap-1.5">
-          <p className="text-[18px] text-niebla">Pasos de ensamblado (según el diagrama)</p>
-          <ol className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+          <p className="text-[clamp(15px,2vh,18px)] text-niebla">Pasos de ensamblado (según el diagrama)</p>
+          <ol className="grid grid-cols-1 gap-[clamp(4px,0.7vh,6px)] sm:grid-cols-2">
             {PASOS_ENSAMBLADO.map((p) => {
               const on = pasoActivo?.n === p.n;
               return (
@@ -250,11 +243,11 @@ export default function Despiece() {
                     data-paso={p.n}
                     data-etapa={p.etapa}
                     aria-current={on ? 'step' : undefined}
-                    className={`pressable flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-left text-[17px] leading-tight transition-colors duration-200 ${
+                    className={`pressable flex w-full items-center gap-3 rounded-2xl border px-3 py-[clamp(4px,0.8vh,8px)] text-left text-[clamp(14px,1.9vh,17px)] leading-tight transition-colors duration-200 ${
                       on ? 'border-agua/70 bg-agua/10' : 'border-white/10 hover:bg-white/5'
                     }`}
                   >
-                    <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-[15px] font-bold tabular-nums ${on ? 'bg-agua text-subsuelo' : 'border border-white/25'}`}>{p.n}</span>
+                    <span className={`grid h-[clamp(22px,3vh,28px)] w-[clamp(22px,3vh,28px)] shrink-0 place-items-center rounded-full text-[15px] font-bold tabular-nums ${on ? 'bg-agua text-subsuelo' : 'border border-white/25'}`}>{p.n}</span>
                     Colocar {p.pieza.corto}
                   </button>
                 </li>
