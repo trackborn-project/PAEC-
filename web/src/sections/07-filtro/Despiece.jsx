@@ -23,6 +23,7 @@ export default function Despiece() {
   const [tip, setTip] = useState(null); // { pieza, x, y }
   const lastWheel = useRef(0);
   const panelRef = useRef(null);
+  const scrollRef = useRef(null);
 
   stepRef.current = step;
   const etapa = Math.min(step, TOTAL_ETAPAS - 1);
@@ -145,9 +146,15 @@ export default function Despiece() {
   }, [auto, etapa, setStep]);
 
   // Rueda del ratón: avanza o rearma (sin salir de la sección).
+  // Al terminar la animación (última etapa), seguir bajando desplaza la diapositiva para ver los
+  // cuadros de abajo; al subir, primero regresa el desplazamiento y después rearma el filtro.
   useEffect(() => {
     const el = panelRef.current;
     const onWheel = (e) => {
+      const scroller = scrollRef.current;
+      const puedeBajar = scroller && scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight - 1;
+      if (e.deltaY > 0 && stepRef.current >= TOTAL_ETAPAS - 1 && puedeBajar) return;
+      if (e.deltaY < 0 && scroller && scroller.scrollTop > 0) return;
       e.preventDefault();
       const now = performance.now();
       if (now - lastWheel.current < WHEEL_GAP || Math.abs(e.deltaY) < 4) return;
@@ -170,7 +177,7 @@ export default function Despiece() {
   const pasoActivo = PASOS_ENSAMBLADO.find((p) => p.etapa === etapa && etapa <= PIEZAS.length);
 
   return (
-    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-24 md:grid md:grid-cols-12 md:items-center md:gap-[3vw] md:overflow-hidden md:px-[5vw] md:pb-[5vh] md:pt-[11vh]">
+    <div ref={scrollRef} className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-24 md:grid md:grid-cols-12 md:items-center md:gap-[3vw] md:overflow-y-auto md:px-[5vw] md:pb-[5vh] md:pt-[11vh]">
       <div className="flex flex-col gap-[2.2vh] md:col-span-5">
         <Parte />
         <motion.h2
