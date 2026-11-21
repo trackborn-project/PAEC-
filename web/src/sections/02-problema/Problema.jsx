@@ -7,7 +7,7 @@ import { Insertar } from '../../components/Missing.jsx';
 
 export default function Problema() {
   return (
-    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[3.5vw] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
+    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[3.5vw] md:overflow-y-auto md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
       <motion.div
         className="glass shrink-0 md:col-span-5 h-[min(74vh,780px)] overflow-hidden rounded-[36px] p-0"
         initial={{ opacity: 0, scale: 0.97 }}

@@ -91,13 +91,12 @@ export const sections = [
     short: 'Vistas',
     title: 'Diseño del prototipo',
     mood: 0.29,
-    steps: 5, // isométrica, lateral, frontal, superior, trasera
+    steps: 4, // isométrica, lateral, frontal, superior
     notes: [
       'Ahora veamos las vistas del módulo. La isométrica muestra el módulo completo: la caja mide 5 por 5 por 5 centímetros y el alto total es de 10.',
       '(→) En la vista lateral se ven el puerto USB-C y un orificio pequeño; las sondas quedan una detrás de la otra.',
       '(→) En la vista frontal se ve la ventana transparente con la tarjeta electrónica adentro y, debajo, las dos sondas que se entierran en la maceta.',
       '(→) En la vista superior están el panel cuadrado y el botón de encendido.',
-      '(→) La vista trasera todavía falta insertarla.',
       'La caja mide 5 por 5 por 5 centímetros; con las sondas, el alto total es de 10 centímetros, y las sondas miden 5.',
       'El USB-C alimenta el sistema electrónico, y el orificio lateral deja ver un LED que se enciende en rojo o amarillo cuando hay problemas de compilación o de conexiones.',
     ],

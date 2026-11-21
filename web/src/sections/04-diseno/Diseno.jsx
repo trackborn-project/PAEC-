@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useDeck } from '../../deck/DeckProvider.jsx';
-import { Insertar, Missing } from '../../components/Missing.jsx';
+import { Missing } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
 import frontal from '../../assets/vista-frontal.webp';
 import superior from '../../assets/vista-superior.webp';
@@ -12,7 +12,7 @@ import { Parte } from '../../components/Parte.jsx';
 // para que la vista superior se vea con su tamaño real relativo.
 const SRC_H = 351;
 
-// Orden de la rúbrica: isométrica, lateral, frontal, superior y trasera.
+// Orden de la rúbrica: isométrica, lateral, frontal y superior.
 const VIEWS = [
   {
     id: 'isometrica',
@@ -65,19 +65,6 @@ const VIEWS = [
     measures: [
       { side: 'top', label: 'fondo de la caja', valor: '5 cm' },
       { side: 'right', label: 'largo de las sondas', valor: '5 cm' },
-    ],
-  },
-  {
-    id: 'trasera',
-    label: 'Trasera',
-    src: null,
-    w: 139,
-    h: 351,
-    alt: '',
-    text: 'Vista trasera del módulo.',
-    measures: [
-      { side: 'top', label: 'ancho de la caja', valor: '5 cm' },
-      { side: 'right', label: 'alto total', valor: '10 cm' },
     ],
   },
 ];
@@ -190,14 +177,8 @@ export default function Diseno() {
 
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.figure key={view.id} {...swap} className="relative m-0 grid place-items-center" style={{ height: `calc(min(76vh, 800px) * 0.72 * ${view.h / SRC_H})`, aspectRatio: `${view.w} / ${view.h}` }}>
-            {view.src ? (
-              <img src={view.src} alt={view.alt} className="h-full w-full object-contain drop-shadow-[0_24px_30px_rgb(0_0_0/0.5)]" draggable={false} />
-            ) : (
-              <span className="whitespace-nowrap text-[22px]">
-                <Insertar>VISTA TRASERA</Insertar>
-              </span>
-            )}
-            {view.src && view.cotas !== false && view.measures.map((m) => <Bracket key={m.side} side={m.side} />)}
+            <img src={view.src} alt={view.alt} className="h-full w-full object-contain drop-shadow-[0_24px_30px_rgb(0_0_0/0.5)]" draggable={false} />
+            {view.cotas !== false && view.measures.map((m) => <Bracket key={m.side} side={m.side} />)}
           </motion.figure>
         </AnimatePresence>
 
