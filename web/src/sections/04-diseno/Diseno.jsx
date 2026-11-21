@@ -1,16 +1,33 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useDeck } from '../../deck/DeckProvider.jsx';
-import { Missing } from '../../components/Missing.jsx';
+import { Insertar, Missing } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
 import frontal from '../../assets/vista-frontal.webp';
 import superior from '../../assets/vista-superior.webp';
 import lateral from '../../assets/vista-lateral.webp';
+import isometrica from '../../assets/isometrica.webp';
+import { Parte } from '../../components/Parte.jsx';
 
 // Las tres vistas se muestran a la misma escala (alto original 351 px = alto del visor),
 // para que la vista superior se vea con su tamaño real relativo.
 const SRC_H = 351;
 
+// Orden de la rúbrica: isométrica, lateral, frontal, superior y trasera.
 const VIEWS = [
+  {
+    id: 'isometrica',
+    label: 'Isométrica',
+    src: isometrica,
+    w: 338,
+    h: 351,
+    alt: 'Render isométrico del módulo: caja con pantalla arriba, botón de encendido, ventana frontal transparente con la tarjeta electrónica, puerto USB-C y dos sondas.',
+    text: 'El módulo completo en vista isométrica. La caja mide 5 × 5 × 5 cm y el alto total es de 10 cm.',
+    cotas: false, // render en perspectiva: las medidas van en el panel, sin cotas sobre la imagen
+    measures: [
+      { side: 'top', label: 'caja', valor: '5 × 5 × 5 cm' },
+      { side: 'right', label: 'alto total', valor: '10 cm' },
+    ],
+  },
   {
     id: 'frontal',
     label: 'Frontal',
@@ -50,7 +67,22 @@ const VIEWS = [
       { side: 'right', label: 'largo de las sondas', valor: '5 cm' },
     ],
   },
+  {
+    id: 'trasera',
+    label: 'Trasera',
+    src: null,
+    w: 139,
+    h: 351,
+    alt: '',
+    text: 'Vista trasera del módulo.',
+    measures: [
+      { side: 'top', label: 'ancho de la caja', valor: '5 cm' },
+      { side: 'right', label: 'alto total', valor: '10 cm' },
+    ],
+  },
 ];
+// Lateral antes que frontal, como pide la rúbrica.
+VIEWS.splice(1, 0, ...VIEWS.splice(VIEWS.findIndex((v) => v.id === 'lateral'), 1));
 
 const swap = {
   initial: { opacity: 0, scale: 0.96, filter: 'blur(6px)' },
@@ -85,19 +117,20 @@ export default function Diseno() {
   return (
     <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[4vw] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
       <motion.div className="shrink-0 md:col-span-5 flex flex-col gap-[3vh]" variants={container(0.1, 0.08)} initial="hidden" animate="show">
+        <Parte />
         <motion.h2 variants={item} className="title-width text-[clamp(34px,4.2vw,80px)] font-bold leading-[1.02] tracking-[-0.03em]">
-          Diseño del prototipo
+          Vistas del prototipo
         </motion.h2>
 
         {/* Pestañas con indicador deslizante; también responden a ← → como pasos de la sección */}
-        <motion.div variants={item} role="tablist" aria-label="Vistas técnicas" className="glass flex w-fit gap-1 rounded-full p-1.5">
+        <motion.div variants={item} role="tablist" aria-label="Vistas técnicas" className="glass flex w-fit max-w-full flex-wrap gap-1 rounded-[28px] p-1.5">
           {VIEWS.map((v, i) => (
             <button
               key={v.id}
               role="tab"
               aria-selected={i === step}
               onClick={() => setStep(i)}
-              className={`pressable relative rounded-full px-6 py-2.5 text-[24px] font-semibold transition-colors duration-200 ${
+              className={`pressable relative rounded-full px-3.5 py-2 text-[clamp(16px,1.05vw,22px)] font-semibold transition-colors duration-200 ${
                 i === step ? 'text-subsuelo' : 'text-niebla hover:text-hueso'
               }`}
             >
@@ -156,15 +189,19 @@ export default function Diseno() {
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgb(57_255_136/0.14),transparent_70%)]" />
 
         <AnimatePresence mode="popLayout" initial={false}>
-          <motion.figure key={view.id} {...swap} className="relative m-0" style={{ height: `calc(min(76vh, 800px) * 0.72 * ${view.h / SRC_H})`, aspectRatio: `${view.w} / ${view.h}` }}>
-            <img src={view.src} alt={view.alt} className="h-full w-full object-contain drop-shadow-[0_24px_30px_rgb(0_0_0/0.5)]" draggable={false} />
-            {view.measures.map((m) => (
-              <Bracket key={m.side} side={m.side} />
-            ))}
+          <motion.figure key={view.id} {...swap} className="relative m-0 grid place-items-center" style={{ height: `calc(min(76vh, 800px) * 0.72 * ${view.h / SRC_H})`, aspectRatio: `${view.w} / ${view.h}` }}>
+            {view.src ? (
+              <img src={view.src} alt={view.alt} className="h-full w-full object-contain drop-shadow-[0_24px_30px_rgb(0_0_0/0.5)]" draggable={false} />
+            ) : (
+              <span className="whitespace-nowrap text-[22px]">
+                <Insertar>VISTA TRASERA</Insertar>
+              </span>
+            )}
+            {view.src && view.cotas !== false && view.measures.map((m) => <Bracket key={m.side} side={m.side} />)}
           </motion.figure>
         </AnimatePresence>
 
-        <p className="absolute bottom-5 left-7 text-[18px] text-niebla">Las tres vistas están a la misma escala</p>
+        <p className="absolute bottom-5 left-7 text-[18px] text-niebla">Lateral, frontal y superior están a la misma escala</p>
       </motion.div>
     </div>
   );

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useDeck } from '../../deck/DeckProvider.jsx';
 import { Missing } from '../../components/Missing.jsx';
+import { Parte } from '../../components/Parte.jsx';
 
 // Diagrama de bloques del sistema, según "Cómo funciona" y "Control y potencia" de notas.md.
 const W = 1500;
@@ -73,12 +74,13 @@ export default function Detector() {
 
   return (
     <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-4 overflow-y-auto px-5 pb-10 pt-20 md:justify-center md:gap-[2.5vh] md:overflow-hidden md:px-[5vw] md:pb-[5vh] md:pt-[11vh]">
+      <Parte />
       <motion.h2
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}
         className="title-width text-[clamp(32px,3.8vw,72px)] font-bold leading-[1.02] tracking-[-0.03em]"
       >
-        Cómo funciona el detector
+        Diagrama de control y potencia
       </motion.h2>
       <div className="glass relative h-[48vh] shrink-0 rounded-[32px] md:h-auto md:min-h-0 md:flex-1">
         {/* Leyenda de los tres tipos de conexión */}

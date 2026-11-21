@@ -5,6 +5,7 @@ import { useDeck } from '../../deck/DeckProvider.jsx';
 import { useReduce } from '../../deck/MotionPref.jsx';
 import { FiltroSVG } from './FiltroSVG.jsx';
 import { AGUA, CX, ETAPAS, PASOS_ENSAMBLADO, PIEZAS, TOTAL_ETAPAS } from './filtroData.js';
+import { Parte } from '../../components/Parte.jsx';
 
 // Curvas del proyecto (index.css): movimiento en pantalla = ease-in-out fuerte; entradas = ease-out fuerte.
 const IN_OUT = 'cubic-bezier(0.77, 0, 0.175, 1)';
@@ -171,6 +172,7 @@ export default function Despiece() {
   return (
     <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-24 md:grid md:grid-cols-12 md:items-center md:gap-[3vw] md:overflow-hidden md:px-[5vw] md:pb-[5vh] md:pt-[11vh]">
       <div className="flex flex-col gap-[2.2vh] md:col-span-5">
+        <Parte />
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}

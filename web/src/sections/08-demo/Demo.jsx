@@ -4,6 +4,7 @@ import { Gauge } from './Gauge.jsx';
 import { CrackedSoil } from '../02-problema/CrackedSoil.jsx';
 import { Particles, WATER } from '../../components/Particles.jsx';
 import { Missing } from '../../components/Missing.jsx';
+import { Parte } from '../../components/Parte.jsx';
 
 // Simulación ilustrativa con los valores del equipo (notas.md, "Umbral de riego"):
 // riega cuando la lectura baja de 15 y se detiene al llegar a 100. Falta documentar la calibración.
@@ -121,6 +122,7 @@ export default function Demo() {
       </motion.div>
 
       <div className="shrink-0 md:col-span-5 flex flex-col gap-[2vh]">
+        <Parte />
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}

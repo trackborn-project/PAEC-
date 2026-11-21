@@ -4,6 +4,7 @@ import { Missing } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
 import { aprendizajes, proceso, queremosAprender } from '../../content/fase3.js';
 import { useReduce } from '../../deck/MotionPref.jsx';
+import { Parte } from '../../components/Parte.jsx';
 
 // Tarjetas que giran: problema al frente, solución atrás (clic, Enter o Espacio).
 function FlipCard({ a, i }) {
@@ -46,6 +47,7 @@ export default function Aprendizajes() {
   return (
     <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:justify-center md:gap-[4vh] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
       <motion.div variants={container(0.08, 0.08)} initial="hidden" animate="show" className="flex flex-col gap-3">
+        <Parte />
         <motion.h2 variants={item} className="title-width text-[clamp(34px,min(4.2vw,8vh),80px)] font-bold leading-[1.02] tracking-[-0.03em]">
           Problemas y aprendizajes
         </motion.h2>

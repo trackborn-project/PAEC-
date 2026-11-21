@@ -11,6 +11,11 @@ import Resultados from './10-resultados/Resultados.jsx';
 import Aprendizajes from './11-aprendizajes/Aprendizajes.jsx';
 import Mejoras from './12-mejoras/Mejoras.jsx';
 import Conclusion from './13-conclusion/Conclusion.jsx';
+import Paec from './paec/Paec.jsx';
+import Objetivos from './objetivos/Objetivos.jsx';
+import Bocetos from './bocetos/Bocetos.jsx';
+import Diagramas from './diagramas/Diagramas.jsx';
+import Esperados from './esperados/Esperados.jsx';
 
 // id de sección (content/sections.js) → componente.
 export const sectionComponents = {
@@ -27,4 +32,9 @@ export const sectionComponents = {
   aprendizajes: Aprendizajes,
   mejoras: Mejoras,
   conclusion: Conclusion,
+  paec: Paec,
+  objetivos: Objetivos,
+  bocetos: Bocetos,
+  diagramas: Diagramas,
+  esperados: Esperados,
 };

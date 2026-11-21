@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { AnimatedCounter } from '../../components/AnimatedCounter.jsx';
 import { CATEGORIAS, inventario, mxn, sumar } from '../../content/inventario.js';
 import { useReduce } from '../../deck/MotionPref.jsx';
+import { Parte } from '../../components/Parte.jsx';
 
 const FILTROS = [{ id: 'todos', nombre: 'Todos' }, ...CATEGORIAS];
 const fmtMxn = (v) => mxn(v);
@@ -27,12 +28,13 @@ export default function Costos() {
   return (
     <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-24 md:grid md:grid-cols-12 md:items-center md:gap-[3vw] md:overflow-hidden md:px-[5vw] md:pb-[5vh] md:pt-[11vh]">
       <div className="flex flex-col gap-[2.4vh] md:col-span-5">
+        <Parte />
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}
           className="title-width text-[clamp(36px,min(4.2vw,8vh),80px)] font-bold leading-[1.02] tracking-[-0.03em]"
         >
-          Costos y materiales
+          Componentes y costos
         </motion.h2>
 
         {/* Total: calculado sumando las filas del inventario */}

@@ -49,7 +49,12 @@ export const pruebas = {
   ],
 };
 
-export const aprendizajes = [
+// Objetivos (rúbrica II.c). Objetivo general dictado por el equipo.
+export const objetivoGeneral = 'Disminuir radicalmente el desperdicio desmedido de agua en el plantel.';
+
+// Problemas que estaban en la diapositiva "Problemas y aprendizajes" (notas.md), movidos a Objetivos
+// y redactados como problemas que el proyecto resuelve en el CBTis 40.
+export const problemasPlantel = [
   {
     // notas.md, "Datos para la Fase 3 › Problemas y soluciones"
     problema: 'La falta de mantenimiento y el riego desmedido, junto con la pérdida descuidada de agua en el plantel.',
@@ -64,6 +69,23 @@ export const aprendizajes = [
     // notas.md, "Nota interna de consistencia"
     problema: 'El sketch revisado mostraba la lectura y la pantalla, pero no reflejaba el control de la bomba.',
     solucion: 'Actualizar o confirmar el sketch y las fichas técnicas para que describan el prototipo físico actual.',
+  },
+];
+
+// Diapositiva "Problemas y aprendizajes": problemas NUEVOS propuestos para la rúbrica (no repiten los de Objetivos).
+// Las soluciones marcadas como propuesta no son funciones que ya tenga el prototipo.
+export const aprendizajes = [
+  {
+    problema: 'Fugas no detectadas en tuberías y bebederos del plantel.',
+    solucion: 'Propuesta: colocar sondas de humedad junto a tuberías y bebederos para avisar cuando el suelo se moje sin que haya riego.',
+  },
+  {
+    problema: 'Agua estancada en macetas y jardineras por exceso de riego, que atrae mosquitos.',
+    solucion: 'El riego se detiene al llegar a 100 y el balde hermético del filtro está sellado contra plagas y mosquitos.',
+  },
+  {
+    problema: 'Falta de datos para medir el consumo de agua del plantel.',
+    solucion: 'Propuesta: que el ESP32 registre cada riego y cada lectura para conocer cuánta agua se usa.',
   },
 ];
 

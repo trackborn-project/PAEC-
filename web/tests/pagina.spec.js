@@ -8,7 +8,7 @@ const CONTENIDO = path.resolve(here, '../../Contenido');
 const CAPTURAS = path.resolve(here, '../../capturas');
 
 // Secciones según src/content/sections.js (id → número de diapositiva).
-const SECCIONES = ['portada', 'problema', 'solucion', 'diseno', 'anatomia', 'detector', 'filtro', 'demo', 'costos', 'resultados', 'aprendizajes', 'mejoras', 'conclusion'];
+const SECCIONES = ['portada', 'paec', 'problema', 'objetivos', 'bocetos', 'diseno', 'anatomia', 'filtro', 'detector', 'diagramas', 'costos', 'solucion', 'demo', 'resultados', 'esperados', 'aprendizajes', 'mejoras', 'conclusion'];
 const N_FILTRO = SECCIONES.indexOf('filtro') + 1;
 const N_COSTOS = SECCIONES.indexOf('costos') + 1;
 
@@ -173,7 +173,7 @@ test('info nueva: los datos de notas.md, filtro.jpg e inventario aparecen en la 
   }
   // Datos que se integraron (notas.md, filtro.jpg, inventario_y_costos.md).
   const esperados = [
-    'The crowns', '3AMM', 'CBTis 40', 'Poco mantenimiento a las zonas verdes',
+    'The Crows', 'Mateo Fregoso', 'Erick Pimentel', 'Dr. Magdiel Almeida Zamora', '23 de noviembre de 2026', 'Instala sistemas neumáticos, hidráulicos y electrohidráulicos', 'Proyecto Aula-Escuela-Comunidad', 'Disminuir radicalmente el desperdicio desmedido de agua en el plantel', 'Fugas no detectadas en tuberías y bebederos', 'Falta de datos para medir el consumo de agua', '3AMM', 'CBTis 40', 'Poco mantenimiento a las zonas verdes',
     'en tierra seca y húmeda', 'Revisar el filtro', 'Cómo observar una situación',
     'Condensado de AC', 'Grava Caliza', 'Tezontle', 'Balde hermético (~19 L)',
     'Mini bomba de agua sumergible 5V', 'Módulo de relé de doble canal 5V', 'Pantalla OLED de 0.96 pulgadas',
@@ -187,7 +187,7 @@ test('info nueva: los datos de notas.md, filtro.jpg e inventario aparecen en la 
     'durante 2 días', 'plagas y mosquitos', 'la pantalla reflejó los resultados', 'pH entre 8 y 9', 'agua estancada muy sucia',
     'Miguel Ángel Fregoso', 'Thelma Minerva Gallardo', 'plantas desaladoras', '¡Es ideal para mis macetas!', 'conocidos y familiares cercanos',
     // Problemas y soluciones, mejoras
-    'riego desmedido', 'filtra el agua de los aires acondicionados', 'adecuado en su totalidad para exteriores', 'lluvias, vientos, composta',
+    'riego desmedido', 'mayormente de gases', 'filtra el agua de los aires acondicionados', 'adecuado en su totalidad para exteriores', 'lluvias, vientos, composta',
     // Datos técnicos
     'alimenta el sistema electrónico', 'rojo o amarillo', 'ahorrar batería', 'MDF barnizado, aluminio y polímero de alta densidad',
     'estados de sequía', 'relevador', 'batería de 5', 'toma el agua del filtro', 'carbonato de calcio', 'piedra pómez',

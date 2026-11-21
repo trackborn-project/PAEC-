@@ -4,6 +4,7 @@ import { RevealText } from '../../components/RevealText.jsx';
 import { SpotlightCard } from '../../components/SpotlightCard.jsx';
 import { Missing } from '../../components/Missing.jsx';
 import { ChipIcon, FilterIcon, PumpIcon, ScreenIcon, SensorIcon } from './PillarIcons.jsx';
+import { Parte } from '../../components/Parte.jsx';
 
 // Pilares del sistema, en el orden en que viaja la información y el agua (notas.md).
 const PILLARS = [
@@ -181,10 +182,11 @@ export default function Solucion() {
   return (
     <div className="relative h-full w-full">
       <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:justify-center md:gap-[4vh] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
+        <Parte />
         <RevealText
           as="h2"
           by="word"
-          text="Observa la humedad de la tierra y riega cuando hace falta."
+          text="Funcionamiento de cada componente"
           delay={0.1}
           className="title-width text-[clamp(34px,4.2vw,80px)] font-bold leading-[1.03] tracking-[-0.03em]"
         />

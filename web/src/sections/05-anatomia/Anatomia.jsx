@@ -4,6 +4,7 @@ import { Missing } from '../../components/Missing.jsx';
 import { Tooltip } from '../../components/Tooltip.jsx';
 import isometrica from '../../assets/isometrica.webp';
 import explosionada from '../../assets/explosionada.webp';
+import { Parte } from '../../components/Parte.jsx';
 
 // Piezas visibles en la vista explosionada. x/y en % sobre la imagen (490×509).
 // Lo que notas.md no explica queda marcado como [FALTA].
@@ -142,12 +143,13 @@ export default function Anatomia() {
   return (
     <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[4vw] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
       <div className="shrink-0 md:col-span-4 flex flex-col gap-[3vh]">
+        <Parte />
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}
           className="title-width text-[clamp(34px,4.2vw,80px)] font-bold leading-[1.02] tracking-[-0.03em]"
         >
-          Anatomía del prototipo
+          Vista explosionada
         </motion.h2>
 
         <motion.div

@@ -2,6 +2,8 @@ import { motion } from 'motion/react';
 import { CrackedSoil } from './CrackedSoil.jsx';
 import { GlassCard } from '../../components/GlassCard.jsx';
 import { container, item } from '../../components/stagger.js';
+import { Parte } from '../../components/Parte.jsx';
+import { Insertar } from '../../components/Missing.jsx';
 
 export default function Problema() {
   return (
@@ -15,20 +17,24 @@ export default function Problema() {
       </motion.div>
 
       <motion.div className="shrink-0 md:col-span-7 flex flex-col gap-[2.4vh]" variants={container(0.2, 0.09)} initial="hidden" animate="show">
+        <Parte />
         <motion.h2 variants={item} className="title-width text-[clamp(34px,4.4vw,84px)] font-bold leading-[1.02] tracking-[-0.03em]">
-          ¿Cuándo necesita agua la tierra?
+          El desperdicio de agua
         </motion.h2>
 
         <motion.p variants={item} className="max-w-[34ch] text-[clamp(26px,1.9vw,34px)] leading-snug text-hueso/90">
-          A simple vista no siempre se distingue. El proyecto busca hacer visible esa condición.
+          Ámbito: <strong className="text-agua">sociedad</strong>. También toca el ambiente y la tecnología.
         </motion.p>
 
         <motion.div variants={item}>
           <GlassCard className="flex flex-col gap-2 px-8 py-5">
-            <p className="text-[20px] text-niebla">Necesidad identificada en el CBTis 40</p>
+            <p className="text-[20px] text-niebla">Contexto interno del CBTis 40</p>
             <p className="text-[28px] font-semibold leading-snug">Poco mantenimiento a las zonas verdes.</p>
             <p className="text-[22px] text-niebla">
-              Usuarios: los alumnos. Se probará en macetas.
+              Dirigido a: los alumnos y a quienes cuidan las plantas. Se probará en macetas.
+            </p>
+            <p className="text-[22px] text-niebla">
+              Contexto externo del plantel: <Insertar>CONTEXTO EXTERNO DEL PLANTEL</Insertar>
             </p>
             <p className="mt-1 inline-flex w-fit items-center gap-3 rounded-full border border-ambar/40 bg-ambar/10 px-4 py-1.5 text-[20px] leading-snug text-ambar">
               <span className="h-2.5 w-2.5 rounded-full bg-ambar" aria-hidden />

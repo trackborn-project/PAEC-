@@ -4,6 +4,7 @@ import { Particles, WATER } from '../../components/Particles.jsx';
 import { Missing } from '../../components/Missing.jsx';
 import { fraseFinal, queremosAprender } from '../../content/fase3.js';
 import { team } from '../../content/sections.js';
+import { Parte } from '../../components/Parte.jsx';
 
 // Cierre: los orbes ya están en "agua limpia" (mood 1). Frase de impacto y preguntas.
 export default function Conclusion() {
@@ -11,6 +12,7 @@ export default function Conclusion() {
     <div className="relative h-full w-full">
       <Particles className="absolute inset-0" count={60} palette={WATER} rise={0.18} />
       <div className="relative mx-auto flex h-full max-w-[1400px] flex-col items-center justify-center gap-[4vh] overflow-y-auto px-5 pb-10 pt-20 text-center md:px-[6vw]">
+        <Parte />
         <RevealText
           as="h2"
           by="word"

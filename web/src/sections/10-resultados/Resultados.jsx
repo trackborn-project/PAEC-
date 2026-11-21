@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Missing } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
 import { pruebas } from '../../content/fase3.js';
+import { Parte } from '../../components/Parte.jsx';
 
 // Pruebas que hizo el equipo (notas.md), el pH medido y la opinión de quienes probaron el prototipo.
 // Lo que notas.md no dice queda como [FALTA].
@@ -35,6 +36,7 @@ export default function Resultados() {
   return (
     <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-5 overflow-y-auto px-5 pb-10 pt-20 md:justify-center md:gap-[2.6vh] md:overflow-hidden md:px-[6vw] md:pb-[5vh] md:pt-[11vh]">
       <motion.div variants={container(0.08, 0.08)} initial="hidden" animate="show" className="flex flex-col gap-3">
+        <Parte />
         <motion.h2 variants={item} className="title-width text-[clamp(34px,min(4.2vw,8vh),80px)] font-bold leading-[1.02] tracking-[-0.03em]">
           Pruebas y resultados
         </motion.h2>

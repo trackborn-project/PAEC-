@@ -5,7 +5,7 @@ import { Particles, DUST } from '../../components/Particles.jsx';
 import { team } from '../../content/sections.js';
 import isometrica from '../../assets/isometrica.webp';
 
-const TITLE = 'Detector de sequía con ESP32';
+const TITLE = team.sistema;
 const fadeUp = (delay) => ({
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0, transition: { type: 'spring', duration: 0.7, bounce: 0, delay } },
@@ -19,7 +19,7 @@ export default function Portada() {
       <div className="relative mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[4vw] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[11vh]">
         <div className="shrink-0 md:col-span-7 flex flex-col gap-[3.5vh]">
           <motion.p {...fadeUp(0.05)} className="text-[24px] font-medium text-ambar">
-            Proyecto PAEC del {team.school}
+            Sistema mecatrónico · Proyecto PAEC del {team.school}
           </motion.p>
 
           <RevealText
@@ -28,20 +28,21 @@ export default function Portada() {
             className="title-width text-[clamp(40px,6.6vw,128px)] font-bold leading-[0.98] tracking-[-0.035em] text-hueso"
           />
 
-          <motion.p {...fadeUp(0.95)} className="max-w-[30ch] text-[clamp(26px,2vw,36px)] leading-snug text-hueso/90">
-            Un prototipo educativo que observa la humedad de la tierra y riega las plantas cuando hace falta. El agua
-            pasa por un filtro antes de llegar a ellas.
-          </motion.p>
-
-          <motion.div {...fadeUp(1.15)} className="flex flex-wrap gap-x-10 gap-y-2 text-[24px] text-niebla">
-            <span>
-              Equipo <strong className="font-semibold text-hueso">{team.name}</strong>
-            </span>
-            <span>
-              Grupo <strong className="font-semibold text-hueso">{team.group}</strong>
-            </span>
-            <span>{team.date}</span>
-          </motion.div>
+          {/* Datos de la portada según la rúbrica */}
+          <motion.dl {...fadeUp(0.95)} className="m-0 grid grid-cols-1 gap-x-8 gap-y-2 text-[clamp(18px,1.25vw,24px)] leading-snug text-niebla md:grid-cols-[auto_1fr]">
+            {[
+              ['Equipo', `${team.name} · grupo ${team.group}`],
+              ['Submódulo', team.submodulo],
+              ['Integrantes', team.integrantes.join(', ')],
+              ['Docente', team.docente],
+              ['Fecha', team.date],
+            ].map(([k, v]) => (
+              <div key={k} className="contents">
+                <dt>{k}</dt>
+                <dd className="m-0 font-semibold text-hueso">{v}</dd>
+              </div>
+            ))}
+          </motion.dl>
         </div>
 
         <motion.div
