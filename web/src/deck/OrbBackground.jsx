@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useReduce } from './MotionPref.jsx';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 
-// Tres orbes de luz. Cada uno tiene una capa ámbar (sequía) y otra cian/verde (agua);
+// Tres orbes de luz tenues. Cada uno tiene una capa gris fría (sequía) y otra verde (agua);
 // el ánimo de la sección decide cuál se ve, cambiando solo la opacidad.
 const ORBS = [
-  { size: '62vmax', top: '-22vmax', left: '-14vmax', depth: 60, dry: '#f2a33a', wet: '#3fd6e0', strength: 0.34 },
-  { size: '54vmax', top: '38vh', left: '58vw', depth: -90, dry: '#c98b4e', wet: '#2aa7c0', strength: 0.3 },
-  { size: '40vmax', top: '62vh', left: '-6vw', depth: 120, dry: '#e07a2e', wet: '#8fd694', strength: 0.22 },
+  { size: '62vmax', top: '-22vmax', left: '-14vmax', depth: 60, dry: '#c4ccc9', wet: '#39ff88', strength: 0.16 },
+  { size: '54vmax', top: '38vh', left: '58vw', depth: -90, dry: '#7d8784', wet: '#1fae5f', strength: 0.13 },
+  { size: '40vmax', top: '62vh', left: '-6vw', depth: 120, dry: '#5d6663', wet: '#8dffb9', strength: 0.11 },
 ];
 
 function Orb({ orb, px, py, mood }) {
@@ -47,7 +47,7 @@ export function OrbBackground({ mood }) {
         <Orb key={i} orb={orb} px={px} py={py} mood={mood} />
       ))}
       {/* Viñeta para mantener contraste en los bordes */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgb(5_14_17/0.7)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgb(6_8_7/0.7)_100%)]" />
     </div>
   );
 }

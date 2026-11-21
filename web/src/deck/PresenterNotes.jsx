@@ -20,7 +20,7 @@ export function PresenterNotes() {
           initial={{ x: '104%' }}
           animate={{ x: 0, transition: { duration: 0.32, ease: [0.32, 0.72, 0, 1] } }}
           exit={{ x: '104%', transition: { duration: 0.22, ease: [0.23, 1, 0.32, 1] } }}
-          className="fixed bottom-6 right-4 top-20 z-50 flex w-[min(600px,44vw)] flex-col rounded-[28px] border border-white/15 bg-[#071216] p-8 shadow-2xl"
+          className="fixed bottom-6 right-4 top-20 z-50 flex w-[min(600px,44vw)] flex-col rounded-[28px] border border-white/15 bg-[#0b0e0d] p-8 shadow-2xl"
         >
           <div className="mb-6 flex items-center justify-between gap-4 text-[18px] text-niebla">
             <Elapsed since={startedAt} />

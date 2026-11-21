@@ -6,6 +6,7 @@ import { Navbar } from './Navbar.jsx';
 import { ProgressBar } from './ProgressBar.jsx';
 import { PresenterNotes } from './PresenterNotes.jsx';
 import { MotionHint } from './MotionHint.jsx';
+import { StarCursor } from './StarCursor.jsx';
 import { sectionComponents } from '../sections/index.js';
 import { widthFor } from '../content/sections.js';
 
@@ -57,6 +58,7 @@ export function Deck() {
       <ProgressBar />
       <PresenterNotes />
       <MotionHint />
+      <StarCursor />
     </div>
   );
 }

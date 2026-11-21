@@ -13,7 +13,7 @@ export default function Pendiente() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ type: 'spring', duration: 0.6, bounce: 0 }}
-        className="title-width text-[clamp(48px,5vw,96px)] font-extrabold leading-tight"
+        className="title-width text-[clamp(34px,5vw,96px)] font-bold leading-tight"
       >
         {section.title}
       </motion.h2>

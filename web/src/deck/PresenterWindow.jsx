@@ -29,7 +29,7 @@ export function PresenterWindow() {
   }, []);
 
   return (
-    <div className="h-full overflow-y-auto bg-[#071216] p-10">
+    <div className="h-full overflow-y-auto bg-[#0b0e0d] p-10">
       <div className="mx-auto flex max-w-3xl flex-col gap-8">
         <div className="flex items-center justify-between text-[20px] text-niebla">
           <span>

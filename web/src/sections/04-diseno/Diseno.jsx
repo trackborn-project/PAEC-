@@ -83,9 +83,9 @@ export default function Diseno() {
   const view = VIEWS[step] ?? VIEWS[0];
 
   return (
-    <div className="mx-auto grid h-full max-w-[1760px] grid-cols-12 items-center gap-[4vw] px-[6vw] pb-[6vh] pt-[12vh]">
-      <motion.div className="col-span-5 flex flex-col gap-[3vh]" variants={container(0.1, 0.08)} initial="hidden" animate="show">
-        <motion.h2 variants={item} className="title-width text-[clamp(48px,4.2vw,80px)] font-extrabold leading-[1.02] tracking-[-0.015em]">
+    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[4vw] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
+      <motion.div className="shrink-0 md:col-span-5 flex flex-col gap-[3vh]" variants={container(0.1, 0.08)} initial="hidden" animate="show">
+        <motion.h2 variants={item} className="title-width text-[clamp(34px,4.2vw,80px)] font-bold leading-[1.02] tracking-[-0.03em]">
           Diseño del prototipo
         </motion.h2>
 
@@ -139,7 +139,7 @@ export default function Diseno() {
       </motion.div>
 
       <motion.div
-        className="glass relative col-span-7 flex h-[min(76vh,800px)] items-center justify-center overflow-hidden rounded-[36px]"
+        className="glass relative shrink-0 md:col-span-7 flex h-[min(76vh,800px)] items-center justify-center overflow-hidden rounded-[36px]"
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1, transition: { type: 'spring', duration: 0.8, bounce: 0, delay: 0.15 } }}
       >
@@ -149,11 +149,11 @@ export default function Diseno() {
           className="absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
-              'linear-gradient(to right, #eef3f1 1px, transparent 1px), linear-gradient(to bottom, #eef3f1 1px, transparent 1px)',
+              'linear-gradient(to right, #eef1ef 1px, transparent 1px), linear-gradient(to bottom, #eef1ef 1px, transparent 1px)',
             backgroundSize: '48px 48px',
           }}
         />
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgb(63_214_224/0.14),transparent_70%)]" />
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgb(57_255_136/0.14),transparent_70%)]" />
 
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.figure key={view.id} {...swap} className="relative m-0" style={{ height: `calc(min(76vh, 800px) * 0.72 * ${view.h / SRC_H})`, aspectRatio: `${view.w} / ${view.h}` }}>

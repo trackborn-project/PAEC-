@@ -10,7 +10,8 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react(), tailwindcss(), ...(archivo ? [viteSingleFile()] : [])],
     build: archivo ? { outDir: 'dist-archivo', assetsInlineLimit: Infinity } : {},
-    server: { port: 5173, strictPort: true },
+    // fs.allow '..': permite importar los .md de /Contenido (fuera de /web) como fuente de datos.
+    server: { port: 5173, strictPort: true, fs: { allow: ['..'] } },
     preview: { port: 4173, strictPort: true },
   };
 });

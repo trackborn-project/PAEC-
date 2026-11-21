@@ -19,7 +19,7 @@ const PILLARS = [
     missing: 'calibración de la lectura',
     Icon: SensorIcon,
     color: 'text-ambar',
-    span: 'col-span-3',
+    span: 'md:col-span-3',
   },
   {
     id: 'esp32',
@@ -29,11 +29,12 @@ const PILLARS = [
     long: [
       'Es el control del sistema: interpreta la lectura del sensor y manda la orden de iniciar o detener el riego.',
       'Da la orden, pero no alimenta directamente el motor de la bomba.',
+      'Es una placa de desarrollo ESP32 (inventario).',
     ],
     missing: 'umbral de riego y condiciones de activación y detención',
     Icon: ChipIcon,
     color: 'text-tierra',
-    span: 'col-span-3',
+    span: 'md:col-span-3',
   },
   {
     id: 'bomba',
@@ -43,11 +44,12 @@ const PILLARS = [
     long: [
       'La bomba necesita una alimentación capaz de mover el agua.',
       'Una etapa de potencia recibe la orden del control y conecta o desconecta la energía de la bomba.',
+      'Es una mini bomba de agua sumergible de 5 V. El inventario incluye un módulo de relé de doble canal de 5 V.',
     ],
-    missing: 'tipo de bomba y de etapa de potencia',
+    missing: 'confirmar qué hace de etapa de potencia',
     Icon: PumpIcon,
     color: 'text-agua',
-    span: 'col-span-2',
+    span: 'md:col-span-2',
   },
   {
     id: 'filtro',
@@ -55,13 +57,12 @@ const PILLARS = [
     verb: 'Filtra el agua',
     short: 'El agua pasa por él antes de llegar a las plantas.',
     long: [
-      'El agua pasa por el filtro antes de llegar a las plantas.',
+      'Recibe agua de condensado del aire acondicionado y la pasa por tres etapas: malla y carbón activo, grava caliza y piedra volcánica (tezontle).',
       'Pertenece al recorrido del agua, no al circuito eléctrico.',
     ],
-    missing: 'capas y materiales del filtro',
     Icon: FilterIcon,
     color: 'text-agua',
-    span: 'col-span-2',
+    span: 'md:col-span-2',
   },
   {
     id: 'pantalla',
@@ -71,10 +72,11 @@ const PILLARS = [
     long: [
       'Convierte la lectura en un mensaje visual fácil de consultar.',
       'Permite saber el estado del sistema sin conectar nada más.',
+      'Es una pantalla OLED de 0.96 pulgadas (inventario).',
     ],
     Icon: ScreenIcon,
     color: 'text-brote',
-    span: 'col-span-2',
+    span: 'md:col-span-2',
   },
 ];
 
@@ -124,7 +126,7 @@ function PillarDetail({ p, onClose }) {
   return (
     <div className="absolute inset-0 z-30 flex items-center justify-center p-[6vw]">
       <motion.div
-        className="absolute inset-0 bg-[#040c0e]/70"
+        className="absolute inset-0 bg-[#050706]/70"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0, transition: { duration: 0.2 } }}
@@ -148,7 +150,7 @@ function PillarDetail({ p, onClose }) {
           exit={{ opacity: 0, transition: { duration: 0.08 } }}
         >
           <span className="text-[22px] text-niebla">{p.name}</span>
-          <h3 className="text-[48px] font-extrabold leading-tight">{p.verb}</h3>
+          <h3 className="text-[48px] font-bold leading-tight">{p.verb}</h3>
           {p.long.map((t) => (
             <p key={t} className="text-[28px] leading-snug text-hueso/90">
               {t}
@@ -178,16 +180,16 @@ export default function Solucion() {
 
   return (
     <div className="relative h-full w-full">
-      <div className="mx-auto flex h-full max-w-[1760px] flex-col justify-center gap-[4vh] px-[6vw] pb-[6vh] pt-[12vh]">
+      <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:justify-center md:gap-[4vh] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
         <RevealText
           as="h2"
           by="word"
           text="Observa la humedad de la tierra y riega cuando hace falta."
           delay={0.1}
-          className="title-width text-[clamp(48px,4.2vw,80px)] font-extrabold leading-[1.03] tracking-[-0.015em]"
+          className="title-width text-[clamp(34px,4.2vw,80px)] font-bold leading-[1.03] tracking-[-0.03em]"
         />
 
-        <div className="grid min-h-0 flex-1 grid-cols-6 grid-rows-2 gap-5" style={{ maxHeight: 520 }}>
+        <div className="grid grid-cols-1 gap-4 md:min-h-0 md:flex-1 md:max-h-[520px] md:grid-cols-6 md:grid-rows-2 md:gap-5">
           {PILLARS.map((p, i) => (
             <PillarCard key={p.id} p={p} index={i} onOpen={setOpen} />
           ))}

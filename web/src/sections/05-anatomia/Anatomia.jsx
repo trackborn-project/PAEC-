@@ -144,12 +144,12 @@ export default function Anatomia() {
   };
 
   return (
-    <div className="mx-auto grid h-full max-w-[1760px] grid-cols-12 items-center gap-[4vw] px-[6vw] pb-[6vh] pt-[12vh]">
-      <div className="col-span-4 flex flex-col gap-[3vh]">
+    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[4vw] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
+      <div className="shrink-0 md:col-span-4 flex flex-col gap-[3vh]">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}
-          className="title-width text-[clamp(48px,4.2vw,80px)] font-extrabold leading-[1.02] tracking-[-0.015em]"
+          className="title-width text-[clamp(34px,4.2vw,80px)] font-bold leading-[1.02] tracking-[-0.03em]"
         >
           Anatomía del prototipo
         </motion.h2>
@@ -198,8 +198,8 @@ export default function Anatomia() {
         </div>
       </div>
 
-      <div className="glass relative col-span-8 h-[min(78vh,820px)] overflow-visible rounded-[36px]">
-        <div aria-hidden className="absolute inset-0 rounded-[36px] bg-[radial-gradient(ellipse_50%_50%_at_50%_45%,rgb(63_214_224/0.12),transparent_70%)]" />
+      <div className="glass relative shrink-0 md:col-span-8 h-[min(78vh,820px)] overflow-visible rounded-[36px]">
+        <div aria-hidden className="absolute inset-0 rounded-[36px] bg-[radial-gradient(ellipse_50%_50%_at_50%_45%,rgb(57_255_136/0.12),transparent_70%)]" />
         {/* Lienzo cuadrado con la proporción de los renders */}
         <div className="absolute left-1/2 top-1/2 aspect-[490/509] h-[92%] -translate-x-1/2 -translate-y-1/2">
           <motion.img

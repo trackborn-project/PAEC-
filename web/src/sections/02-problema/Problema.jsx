@@ -6,17 +6,17 @@ import { container, item } from '../../components/stagger.js';
 
 export default function Problema() {
   return (
-    <div className="mx-auto grid h-full max-w-[1760px] grid-cols-12 items-center gap-[3.5vw] px-[6vw] pb-[6vh] pt-[12vh]">
+    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[3.5vw] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
       <motion.div
-        className="glass col-span-5 h-[min(74vh,780px)] overflow-hidden rounded-[36px] p-0"
+        className="glass shrink-0 md:col-span-5 h-[min(74vh,780px)] overflow-hidden rounded-[36px] p-0"
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1, transition: { type: 'spring', duration: 0.8, bounce: 0 } }}
       >
         <CrackedSoil className="h-full w-full" />
       </motion.div>
 
-      <motion.div className="col-span-7 flex flex-col gap-[2.4vh]" variants={container(0.2, 0.09)} initial="hidden" animate="show">
-        <motion.h2 variants={item} className="title-width text-[clamp(48px,4.4vw,84px)] font-extrabold leading-[1.02] tracking-[-0.015em]">
+      <motion.div className="shrink-0 md:col-span-7 flex flex-col gap-[2.4vh]" variants={container(0.2, 0.09)} initial="hidden" animate="show">
+        <motion.h2 variants={item} className="title-width text-[clamp(34px,4.4vw,84px)] font-bold leading-[1.02] tracking-[-0.03em]">
           ¿Cuándo necesita agua la tierra?
         </motion.h2>
 

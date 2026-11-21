@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useReduce } from '../deck/MotionPref.jsx';
 
-export const DUST = ['#f2a33a', '#eef3f1', '#c98b4e'];
-export const WATER = ['#3fd6e0', '#eef3f1', '#8fd694'];
+export const DUST = ['#c4ccc9', '#eef1ef', '#7d8784'];
+export const WATER = ['#39ff88', '#eef1ef', '#8dffb9'];
 
 // Partículas en Canvas: polvo (ámbar) o gotas (cian). Con movimiento reducido se dibuja un cuadro estático.
 // Pasa paletas constantes (DUST, WATER): un arreglo nuevo en cada render reinicia la animación.

@@ -53,7 +53,7 @@ export function Tooltip({ content, side = 'top', children, className = '', open:
               exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.1 } }}
               transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
               style={{ transformOrigin: p.origin }}
-              className="block rounded-2xl border border-white/15 bg-[#0c2228]/95 px-5 py-4 text-[20px] leading-snug text-hueso shadow-2xl"
+              className="block rounded-2xl border border-white/15 bg-[#171c1b]/95 px-5 py-4 text-[20px] leading-snug text-hueso shadow-2xl"
             >
               {content}
             </motion.span>

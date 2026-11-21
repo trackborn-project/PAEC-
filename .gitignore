@@ -12,3 +12,8 @@ Thumbs.db
 .vscode/
 .idea/
 dist-archivo/
+
+# Capturas de las pruebas (se regeneran con npx playwright test)
+capturas/
+web/test-results/
+web/playwright-report/

@@ -90,14 +90,62 @@ Probar el sistema en tierra seca y húmeda, revisar el filtro y escuchar la opin
 
 
 
-## Información pendiente para completar el sitio
+## Datos para la Fase 3
 
-- Nombre del equipo: The crowns
-- 3AMM Fecha: 24/11/26
-- Plantel educativo CBTIS40, el prototipo se probara en macetas 
-- Los alumnos son los usuarios, la necesidad fue el poco mantenimiento a zonas verdes
-- Resultados reales de pruebas y opinión de usuarios. (pendiente)
-- Fotografías propias del prototipo terminado. (pendiente)
-- Medidas (pendiente)
-- costo del sistema inteligente = 400$MXN
+### Materiales (pieza | cantidad | costo MXN)
 
+-
+
+### Proceso de armado (en orden)
+
+1.
+
+### Pruebas y resultados
+
+- Qué se probó:
+
+- Resultados:
+
+- Opinión de usuarios:
+
+### Problemas y soluciones
+
+- Problema: … / Solución: …
+
+### Mejoras futuras
+
+-
+
+### Frase final de la conclusión
+
+## Datos técnicos pendientes
+
+- Medidas (caja ancho×alto×fondo, alto total, largo de sondas):
+
+- Bloque negro con cables:
+
+- USB-C sirve para:
+
+- Orificio lateral:
+
+- Botón enciende/apaga:
+
+- Material de la carcasa:
+
+- Qué muestra la pantalla:
+
+- Tipo de bomba:
+
+- Etapa de potencia:
+
+- Alimentación de la bomba:
+
+- De dónde toma el agua:
+
+- Capas del filtro (de arriba a abajo):
+
+- Umbral de riego / cuándo se detiene:
+
+- Zonas verdes del plantel (dato y fuente):
+
+- Frecuencia actual de riego:

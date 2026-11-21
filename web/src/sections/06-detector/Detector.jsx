@@ -10,19 +10,19 @@ const NW = 300;
 const NH = 132;
 
 const KIND = {
-  control: { color: '#f2a33a', label: 'Señal de control' },
+  control: { color: '#c4ccc9', label: 'Señal de control' },
   potencia: { color: '#ff7a5d', label: 'Energía de la bomba' },
-  agua: { color: '#3fd6e0', label: 'Recorrido del agua' },
+  agua: { color: '#39ff88', label: 'Recorrido del agua' },
 };
 
 const NODES = {
   sensor: { x: 160, y: 150, name: 'Sensor', sub: 'lee la tierra', tip: 'Toma una lectura relacionada con la humedad de la tierra.' },
   esp32: { x: 540, y: 150, name: 'ESP32', sub: 'decide', tip: 'Interpreta la lectura, decide si hace falta regar y manda la orden de iniciar o detener el riego.' },
-  potencia: { x: 920, y: 150, name: 'Etapa de potencia', sub: 'conecta la energía', tip: 'Recibe la orden del ESP32 y conecta o desconecta la energía de la bomba.', missing: 'tipo de etapa de potencia' },
-  bomba: { x: 1310, y: 150, name: 'Bomba', sub: 'mueve el agua', tip: 'Impulsa el agua cuando recibe energía.', missing: 'tipo de bomba' },
-  pantalla: { x: 540, y: 410, name: 'Pantalla', sub: 'muestra el estado', tip: 'Comunica el estado del sistema.', missing: 'qué mensajes muestra' },
+  potencia: { x: 920, y: 150, name: 'Etapa de potencia', sub: 'conecta la energía', tip: 'Recibe la orden del ESP32 y conecta o desconecta la energía de la bomba. El inventario incluye un relé de doble canal de 5 V.', missing: 'confirmar qué hace de etapa de potencia' },
+  bomba: { x: 1310, y: 150, name: 'Bomba', sub: 'mueve el agua', tip: 'Mini bomba de agua sumergible de 5 V: impulsa el agua cuando recibe energía.' },
+  pantalla: { x: 540, y: 410, name: 'Pantalla', sub: 'muestra el estado', tip: 'Pantalla OLED de 0.96 pulgadas: comunica el estado del sistema.', missing: 'qué mensajes muestra' },
   fuente: { x: 920, y: 410, name: 'Alimentación', sub: 'de la bomba', tip: 'La bomba necesita una alimentación capaz de mover el agua; el ESP32 no la alimenta directamente.', missing: 'fuente de alimentación' },
-  filtro: { x: 1310, y: 410, name: 'Filtro', sub: 'en el recorrido', tip: 'El agua pasa por el filtro antes de llegar a las plantas. No forma parte del circuito eléctrico.' },
+  filtro: { x: 1310, y: 410, name: 'Filtro', sub: 'en el recorrido', tip: 'Tres etapas: malla y carbón activo, grava caliza y piedra volcánica (tezontle). No forma parte del circuito eléctrico.' },
   plantas: { x: 1310, y: 650, name: 'Plantas', sub: 'en macetas', tip: 'El agua filtrada llega a la maceta, donde están las sondas del sensor.' },
 };
 
@@ -71,15 +71,15 @@ export default function Detector() {
   const tipNode = hover ? NODES[hover] : null;
 
   return (
-    <div className="mx-auto flex h-full max-w-[1760px] flex-col justify-center gap-[2.5vh] px-[5vw] pb-[5vh] pt-[11vh]">
+    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-4 overflow-y-auto px-5 pb-10 pt-20 md:justify-center md:gap-[2.5vh] md:overflow-hidden md:px-[5vw] md:pb-[5vh] md:pt-[11vh]">
       <motion.h2
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}
-        className="title-width text-[clamp(44px,3.8vw,72px)] font-extrabold leading-[1.02] tracking-[-0.015em]"
+        className="title-width text-[clamp(32px,3.8vw,72px)] font-bold leading-[1.02] tracking-[-0.03em]"
       >
         Cómo funciona el detector
       </motion.h2>
-      <div className="glass relative min-h-0 flex-1 rounded-[32px]">
+      <div className="glass relative h-[48vh] shrink-0 rounded-[32px] md:h-auto md:min-h-0 md:flex-1">
         {/* Leyenda de los tres tipos de conexión */}
         <div className="absolute left-[19%] top-[69%] z-[1] flex gap-6 text-[20px] text-niebla">
           {Object.entries(KIND).map(([k, v]) => (
@@ -132,15 +132,15 @@ export default function Detector() {
                   width={NW}
                   height={NH}
                   rx="22"
-                  fill={on ? '#12313a' : '#0d2228'}
-                  stroke={on ? '#eef3f1' : '#ffffff'}
+                  fill={on ? '#1b201f' : '#141817'}
+                  stroke={on ? '#eef1ef' : '#ffffff'}
                   strokeOpacity={on ? 0.5 : 0.12}
                   strokeWidth="2"
                 />
-                <text x={n.x} y={n.y - 4} textAnchor="middle" fill="#eef3f1" fontSize={n.name.length > 12 ? 33 : 40} fontWeight="700" fontFamily="Archivo Variable">
+                <text x={n.x} y={n.y - 4} textAnchor="middle" fill="#eef1ef" fontSize={n.name.length > 12 ? 33 : 40} fontWeight="700" fontFamily="Archivo Variable">
                   {n.name}
                 </text>
-                <text x={n.x} y={n.y + 38} textAnchor="middle" fill="#a9bdbc" fontSize="30" fontFamily="Archivo Variable">
+                <text x={n.x} y={n.y + 38} textAnchor="middle" fill="#a3aca9" fontSize="30" fontFamily="Archivo Variable">
                   {n.sub}
                 </text>
               </motion.g>
@@ -157,7 +157,7 @@ export default function Detector() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.1 } }}
               transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
-              className="pointer-events-none absolute z-10 w-[400px] rounded-2xl border border-white/15 bg-[#0c2228] px-5 py-4 text-[22px] leading-snug shadow-2xl"
+              className="pointer-events-none absolute z-10 w-[400px] rounded-2xl border border-white/15 bg-[#171c1b] px-5 py-4 text-[22px] leading-snug shadow-2xl"
               style={{
                 left: `${(tipNode.x / W) * 100}%`,
                 top: `${((tipNode.y + NH / 2) / H) * 100}%`,

@@ -97,15 +97,16 @@ export const sections = [
   {
     id: 'filtro',
     short: 'Filtro',
-    title: 'Cómo funciona el filtro',
+    title: 'Despiece y ensamblado del filtro',
     mood: 0.6,
-    steps: 3,
+    steps: 9, // armado, 6 piezas, recorrido del agua, depósito y bomba
     notes: [
-      'El filtro forma parte del recorrido del agua, no del circuito eléctrico.',
-      '(1) La bomba impulsa el agua hacia el filtro.',
-      '(2) El agua atraviesa el filtro antes de llegar a las plantas.',
-      '(3) Después sale hacia la tierra de la maceta.',
-      'El cambio de color es una ilustración de para qué sirve el filtro: todavía no hemos medido qué tan bien limpia el agua. También falta documentar sus capas y materiales.',
+      'Este es nuestro filtro de agua por etapas. (→ o la rueda del ratón separan las piezas una por una; al regresar se vuelve a armar.)',
+      'Arriba está la entrada de agua: recibe el condensado del aire acondicionado.',
+      'La etapa 1 es un filtro de malla y carbón activo, para el microfiltrado. La etapa 2 es grava caliza, para ajustar el pH. La etapa 3 es piedra volcánica, el tezontle, para la mineralización y la parte biológica.',
+      'Abajo está el balde hermético de unos 19 litros, a prueba de plagas, y la bomba de agua de 5 volts que se usa para el riego con el ESP32.',
+      '(Etapa 7) Una gota recorre las etapas y pasa de turbia a limpia. (Etapa 8) El agua llena el balde y la bomba se activa para regar.',
+      'Los pasos de ensamblado van de abajo hacia arriba; al hacer clic en uno, el filtro muestra cómo queda en ese paso.',
     ],
   },
   {
@@ -121,12 +122,69 @@ export const sections = [
       'Importante: la escala es relativa, no es un porcentaje real de humedad. El umbral y el momento en que se detiene el riego son ilustrativos; los vamos a calibrar con pruebas en tierra seca y húmeda.',
     ],
   },
-  { id: 'construccion', short: 'Construcción', title: 'Construcción', mood: 0.65, steps: 1, phase: 3 },
-  { id: 'resultados', short: 'Resultados', title: 'Pruebas y resultados', mood: 0.7, steps: 1, phase: 3 },
-  { id: 'aprendizajes', short: 'Aprendizajes', title: 'Problemas y aprendizajes', mood: 0.8, steps: 1, phase: 3 },
-  { id: 'mejoras', short: 'Mejoras', title: 'Mejoras futuras', mood: 0.9, steps: 1, phase: 3 },
-  { id: 'conclusion', short: 'Conclusión', title: 'Conclusión y preguntas', mood: 1, steps: 1, phase: 3 },
+  {
+    id: 'costos',
+    short: 'Costos',
+    title: 'Costos y materiales',
+    mood: 0.65,
+    steps: 1,
+    notes: [
+      'Estos son los materiales y lo que costaron, según nuestro inventario. Los precios son aproximados, en pesos mexicanos.',
+      'Los componentes electrónicos los compramos en conjunto: la placa ESP32, la pantalla OLED, el protoboard, los sensores y módulos, el relé de doble canal y los accesorios.',
+      'Después agregamos el sistema de agua: la mini bomba sumergible de 5 volts, el balde hermético de unos 19 litros, los embudos y los materiales del filtro.',
+      '(Usa los filtros Electrónica / Sistema de agua para mostrar cada parte.) El precio de los materiales del filtro es variable: depende de la cantidad y del tipo de material.',
+    ],
+  },
+  {
+    id: 'resultados',
+    short: 'Resultados',
+    title: 'Pruebas y resultados',
+    mood: 0.7,
+    steps: 1,
+    notes: [
+      'Queremos ser honestos: todavía no hay mediciones, pruebas comparativas ni ahorro de agua documentados.',
+      'Lo que sigue es probar el sistema en tierra seca y húmeda, revisar el filtro y escuchar la opinión de posibles usuarios para mejorar el riego.',
+      'Los recuadros marcados como pendientes se van a llenar con esos resultados.',
+    ],
+  },
+  {
+    id: 'aprendizajes',
+    short: 'Aprendizajes',
+    title: 'Problemas y aprendizajes',
+    mood: 0.8,
+    steps: 1,
+    notes: [
+      'Con este proyecto queremos aprender a observar una situación, probar una idea y usar los resultados para mejorarla.',
+      '(Toca cada tarjeta.) Un problema fue que el sketch que revisamos mostraba la lectura y la pantalla, pero no el control de la bomba; por eso hay que actualizar o confirmar el sketch y las fichas técnicas para que describan el prototipo actual.',
+      'Otro punto: la escala del sensor todavía no está calibrada, así que no la presentamos como porcentaje real de humedad.',
+    ],
+  },
+  {
+    id: 'mejoras',
+    short: 'Mejoras',
+    title: 'Mejoras futuras',
+    mood: 0.9,
+    steps: 4, // un grupo de la ruta por paso
+    notes: [
+      '(→ revela cada grupo.) Primero, probar el sistema en tierra seca y húmeda y revisar el filtro.',
+      'Después, calibrar la lectura, definir el umbral de riego y documentar cuándo se activa y se detiene.',
+      'También queremos escuchar a posibles usuarios y comprobar si de verdad les sirve a quienes cuidan las plantas.',
+      'Y, como proyecto PAEC, identificar quiénes cuidarían las plantas, qué necesidad tienen y qué opinan del prototipo.',
+    ],
+  },
+  {
+    id: 'conclusion',
+    short: 'Conclusión',
+    title: 'Conclusión y preguntas',
+    mood: 1,
+    steps: 1,
+    notes: [
+      'Para cerrar: este prototipo nos sirvió para relacionar la mecatrónica con algo cotidiano, el cuidado de las plantas, y para conversar sobre el uso responsable del agua.',
+      'Lo que queremos aprender es cómo observar una situación, probar una idea y usar los resultados para mejorarla.',
+      'Gracias por su atención. ¿Tienen alguna pregunta?',
+    ],
+  },
 ];
 
-// Anchura del eje 'wdth' de Archivo según el ánimo: 125 (seco, ancho) → 78 (agua, estrecho).
-export const widthFor = (mood) => Math.round(125 - mood * 47);
+// Anchura del eje wdth de Archivo según el ánimo: 108 (seco) → 94 (agua). Cambio sutil, tipografía limpia.
+export const widthFor = (mood) => Math.round(108 - mood * 14);

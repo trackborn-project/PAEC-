@@ -85,10 +85,10 @@ export default function Demo() {
   const wet = value / 100;
 
   return (
-    <div className="mx-auto grid h-full max-w-[1760px] grid-cols-12 items-center gap-[3.5vw] px-[6vw] pb-[6vh] pt-[12vh]">
+    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-6 overflow-y-auto px-5 pb-10 pt-20 md:grid md:grid-cols-12 md:items-center md:gap-[3.5vw] md:overflow-hidden md:px-[6vw] md:pb-[6vh] md:pt-[12vh]">
       {/* Tierra: se oscurece al humedecerse y se agrieta al secarse */}
       <motion.div
-        className="glass relative col-span-7 h-[min(76vh,800px)] overflow-hidden rounded-[36px]"
+        className="glass relative shrink-0 md:col-span-7 h-[min(76vh,800px)] overflow-hidden rounded-[36px]"
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1, transition: { type: 'spring', duration: 0.8, bounce: 0 } }}
       >
@@ -109,7 +109,7 @@ export default function Demo() {
           <div className="glass flex items-center gap-4 rounded-full px-6 py-3 text-[24px]">
             <span className="relative grid h-6 w-6 place-items-center" aria-hidden>
               {dry && <span className="absolute inset-0 animate-ping rounded-full bg-alerta/60" />}
-              <span className={`relative h-5 w-5 rounded-full ${dry ? 'bg-alerta shadow-[0_0_16px_#ff5d5d]' : 'bg-brote shadow-[0_0_12px_#8fd694]'}`} />
+              <span className={`relative h-5 w-5 rounded-full ${dry ? 'bg-alerta shadow-[0_0_16px_#ff5d5d]' : 'bg-brote shadow-[0_0_12px_#8dffb9]'}`} />
             </span>
             {dry ? 'Alerta de sequía' : 'Sin alerta'}
           </div>
@@ -120,11 +120,11 @@ export default function Demo() {
         </div>
       </motion.div>
 
-      <div className="col-span-5 flex flex-col gap-[2vh]">
+      <div className="shrink-0 md:col-span-5 flex flex-col gap-[2vh]">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0, transition: { type: 'spring', duration: 0.6, bounce: 0 } }}
-          className="title-width text-[clamp(44px,min(4.2vw,8vh),80px)] font-extrabold leading-[1.02] tracking-[-0.015em]"
+          className="title-width text-[clamp(32px,min(4.2vw,8vh),80px)] font-bold leading-[1.02] tracking-[-0.03em]"
         >
           Demostración
         </motion.h2>

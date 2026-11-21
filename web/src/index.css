@@ -1,15 +1,17 @@
 @import '@fontsource-variable/archivo/wdth.css';
 @import 'tailwindcss';
 
+/* Paleta: oscuro mate + grises fríos; verde radiante solo para resaltar.
+   (Los nombres de los tokens se conservan de la primera versión para no tocar cada clase.) */
 @theme {
-  --color-subsuelo: #0a1a1f;
-  --color-ambar: #f2a33a;
-  --color-tierra: #c98b4e;
-  --color-agua: #3fd6e0;
-  --color-brote: #8fd694;
-  --color-alerta: #ff5d5d;
-  --color-hueso: #eef3f1;
-  --color-niebla: #a9bdbc;
+  --color-subsuelo: #0f1211; /* fondo mate */
+  --color-ambar: #c4ccc9; /* gris frío claro: acento neutro */
+  --color-tierra: #7d8784; /* gris frío medio */
+  --color-agua: #39ff88; /* verde radiante: resaltar */
+  --color-brote: #8dffb9; /* verde suave: estado correcto */
+  --color-alerta: #ff5d5d; /* alerta de sequía */
+  --color-hueso: #eef1ef; /* texto principal */
+  --color-niebla: #a3aca9; /* texto secundario (contraste 7.6:1 sobre el fondo) */
 
   --font-sans: 'Archivo Variable', system-ui, sans-serif;
 
@@ -30,10 +32,23 @@ body {
   background: var(--color-subsuelo);
   color: var(--color-hueso);
   font-family: var(--font-sans);
-  font-size: 24px;
+  font-size: 17px;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Proyección: cuerpo mínimo de 24px a partir de tableta. */
+@media (min-width: 768px) {
+  body {
+    font-size: 24px;
+  }
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 ::selection {
@@ -45,7 +60,7 @@ body {
   outline-offset: 3px;
 }
 
-/* Anchura tipográfica: títulos de sequía anchos, títulos de agua estrechos. */
+/* Anchura tipográfica: el ancho del eje 'wdth' cambia apenas entre secciones (seco → agua). */
 .title-width {
   font-variation-settings: 'wdth' var(--wdth, 100);
 }
@@ -54,14 +69,14 @@ body {
 @utility glass {
   position: relative;
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.02) 40%),
-    rgb(10 26 31 / 0.62);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  border: 1px solid rgb(255 255 255 / 0.13);
+    linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0.015) 40%),
+    rgb(20 23 22 / 0.66);
+  backdrop-filter: blur(22px) saturate(120%);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+  border: 1px solid rgb(255 255 255 / 0.1);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.16),
-    0 24px 60px -24px rgb(0 0 0 / 0.65);
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 24px 60px -24px rgb(0 0 0 / 0.7);
 }
 
 /* Elementos pulsables: escala sutil al pasar, respuesta inmediata al presionar. */
@@ -169,13 +184,13 @@ html[data-motion='reduced'] .pressable:hover:not(:active) { transform: none; }
 .demo-range::-webkit-slider-runnable-track {
   height: 14px;
   border-radius: 999px;
-  background: linear-gradient(to right, #f2a33a, #c98b4e 50%, #3fd6e0);
+  background: linear-gradient(to right, #c4ccc9, #7d8784 50%, #39ff88);
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.15);
 }
 .demo-range::-moz-range-track {
   height: 14px;
   border-radius: 999px;
-  background: linear-gradient(to right, #f2a33a, #c98b4e 50%, #3fd6e0);
+  background: linear-gradient(to right, #c4ccc9, #7d8784 50%, #39ff88);
 }
 .demo-range::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -183,17 +198,17 @@ html[data-motion='reduced'] .pressable:hover:not(:active) { transform: none; }
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #eef3f1;
-  border: 4px solid #0a1a1f;
-  box-shadow: 0 0 0 2px #eef3f1, 0 6px 16px rgb(0 0 0 / 0.5);
+  background: #eef1ef;
+  border: 4px solid #0f1211;
+  box-shadow: 0 0 0 2px #eef1ef, 0 6px 16px rgb(0 0 0 / 0.5);
   transition: transform 150ms var(--ease-out);
 }
 .demo-range::-moz-range-thumb {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #eef3f1;
-  border: 4px solid #0a1a1f;
+  background: #eef1ef;
+  border: 4px solid #0f1211;
 }
 .demo-range:active::-webkit-slider-thumb {
   transform: scale(0.94);
