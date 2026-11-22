@@ -204,7 +204,7 @@ export const sections = [
       'Esta es una simulación de cómo responde el sistema. Muevan el control hacia la izquierda: la tierra se seca y la aguja baja.',
       'Cuando la lectura baja de 15 se enciende la alerta de sequía y el sistema activa la bomba; el riego se detiene al llegar a 100.',
       '(Pulsa “Simular secado y riego” para ver el ciclo completo: la tierra se seca, se activa la bomba, se humedece y la bomba se detiene.)',
-      'Es una simulación ilustrativa con los valores que definimos; todavía falta documentar cómo se calibró la escala del sensor.',
+      'Es una simulación ilustrativa con los valores que definimos.',
     ],
   },
   {

@@ -3,11 +3,10 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Gauge } from './Gauge.jsx';
 import { CrackedSoil } from '../02-problema/CrackedSoil.jsx';
 import { Particles, WATER } from '../../components/Particles.jsx';
-import { Missing } from '../../components/Missing.jsx';
 import { Parte } from '../../components/Parte.jsx';
 
 // Simulación ilustrativa con los valores del equipo (notas.md, "Umbral de riego"):
-// riega cuando la lectura baja de 15 y se detiene al llegar a 100. Falta documentar la calibración.
+// riega cuando la lectura baja de 15 y se detiene al llegar a 100.
 const THRESHOLD = 15;
 const STOP_AT = 100;
 
@@ -170,7 +169,7 @@ export default function Demo() {
         </motion.div>
 
         <p className="text-[20px] leading-snug text-niebla">
-          Simulación ilustrativa: riega bajo 15 y se detiene en 100. <Missing>cómo se calibró la escala</Missing>
+          Simulación ilustrativa: riega bajo 15 y se detiene en 100.
         </p>
       </div>
     </div>
