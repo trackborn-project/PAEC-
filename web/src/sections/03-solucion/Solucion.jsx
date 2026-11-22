@@ -17,7 +17,6 @@ const PILLARS = [
       'Sus dos sondas metálicas se entierran en la maceta y obtienen una lectura relacionada con la humedad de la tierra.',
       'Según el equipo, el riego empieza cuando la lectura baja de 15 y se detiene cuando llega a 100.',
     ],
-    missing: 'cómo se calibró la escala del sensor',
     Icon: SensorIcon,
     color: 'text-ambar',
     span: 'md:col-span-3',
