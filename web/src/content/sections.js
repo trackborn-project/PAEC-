@@ -112,9 +112,8 @@ export const sections = [
       'Este es el módulo armado. (→) Al separarlo vemos sus piezas.',
       '(→ en cada pieza) Arriba está la tapa, que se retira para entrar a la caja, y junto a ella el botón de encendido, que permite al dispositivo descansar o ahorrar batería.',
       'La carcasa, de MDF barnizado, aluminio y polímero de alta densidad, protege la electrónica. Adentro está la tarjeta electrónica; según nuestras notas, ahí está el ESP32, que interpreta la lectura y decide si hace falta regar.',
-      'También hay un bloque negro conectado con cables, la ventana frontal transparente, el puerto USB-C y un orificio lateral.',
+      'También están la fuente de alimentación de 3.3 a 5 volts, conectada con cables, la ventana frontal transparente, el puerto USB-C y un orificio lateral.',
       'Abajo están las sondas: se entierran en la tierra de la maceta y con ellas el sensor obtiene la lectura.',
-      'El bloque negro con cables está marcado como pendiente: todavía debemos confirmar qué es.',
     ],
   },
   {

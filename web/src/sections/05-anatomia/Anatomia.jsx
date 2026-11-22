@@ -43,11 +43,10 @@ export const PARTS = [
   },
   {
     id: 'bloque',
-    name: 'Bloque negro con cables',
+    name: 'Fuente de alimentación de 3.3 - 5 V',
     x: 52.5,
     y: 47,
     text: 'Pieza conectada con cables rojo y negro.',
-    missing: 'confirmar qué es (¿batería?)',
     side: 'right',
   },
   {
@@ -211,7 +210,7 @@ export default function Anatomia() {
           />
           <motion.img
             src={explosionada}
-            alt="Vista explosionada: tapa superior separada, ventana frontal abierta, tarjeta electrónica, bloque negro con cables, puerto USB-C y sondas."
+            alt="Vista explosionada: tapa superior separada, ventana frontal abierta, tarjeta electrónica, fuente de alimentación de 3.3 - 5 V con cables, puerto USB-C y sondas."
             className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_30px_40px_rgb(0_0_0/0.5)]"
             initial={false}
             animate={exploded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.08 }}

@@ -34,7 +34,7 @@ const VIEWS = [
     src: frontal,
     w: 139,
     h: 351,
-    alt: 'Vista frontal: caja con la ventana transparente que deja ver la tarjeta electrónica, un bloque negro con cables y dos sondas.',
+    alt: 'Vista frontal: caja con la ventana transparente que deja ver la tarjeta electrónica, la fuente de alimentación de 3.3 - 5 V con cables y dos sondas.',
     text: 'La ventana transparente deja ver la tarjeta electrónica. Abajo salen las dos sondas que se entierran en la maceta.',
     measures: [
       { side: 'top', label: 'ancho de la caja', valor: '5 cm' },
