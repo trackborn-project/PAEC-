@@ -2,6 +2,8 @@ import { motion } from 'motion/react';
 import { Missing } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
 import { pruebas } from '../../content/fase3.js';
+import { ImagenAmpliable } from '../../components/ImagenAmpliable.jsx';
+import aguaComparacion from '../../assets/agua-comparacion.webp';
 import { Parte } from '../../components/Parte.jsx';
 
 // Pruebas que hizo el equipo (notas.md), el pH medido y la opinión de quienes probaron el prototipo.
@@ -34,7 +36,7 @@ function EscalaPh({ ph }) {
 export default function Resultados() {
   const { ph } = pruebas;
   return (
-    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-5 overflow-y-auto px-5 pb-10 pt-20 md:justify-center md:gap-[2.6vh] md:overflow-hidden md:px-[6vw] md:pb-[5vh] md:pt-[11vh]">
+    <div className="mx-auto flex h-full max-w-[1760px] flex-col gap-5 overflow-y-auto px-5 pb-10 pt-20 md:justify-center md:gap-[2.6vh] [@media(max-height:760px)]:md:gap-[1.8vh] md:overflow-hidden md:px-[6vw] md:pb-[5vh] md:pt-[11vh]">
       <motion.div variants={container(0.08, 0.08)} initial="hidden" animate="show" className="flex flex-col gap-3">
         <Parte />
         <motion.h2 variants={item} className="title-width text-[clamp(34px,min(4.2vw,8vh),80px)] font-bold leading-[1.02] tracking-[-0.03em]">
@@ -66,9 +68,21 @@ export default function Resultados() {
       <motion.div variants={container(0.45, 0.08)} initial="hidden" animate="show" className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <motion.div variants={item} className="glass flex flex-col justify-between gap-3 rounded-[24px] px-6 py-4" data-testid="ph">
           <span className="text-[17px] text-niebla">pH después del filtro</span>
-          <span className="text-[clamp(40px,4vw,64px)] font-bold leading-none tracking-[-0.03em] text-agua tabular-nums [text-shadow:0_0_24px_rgb(57_255_136/0.35)]">
-            {ph.min}–{ph.max}
-          </span>
+          <div className="flex items-end justify-between gap-4">
+            <span className="text-[clamp(40px,4vw,64px)] font-bold leading-none tracking-[-0.03em] text-agua tabular-nums [text-shadow:0_0_24px_rgb(57_255_136/0.35)]">
+              {ph.min}–{ph.max}
+            </span>
+            {/* Comparación del agua antes y después del filtro (Contenido/agua-comparacion.jpg); clic para ampliar */}
+            <ImagenAmpliable
+              id="agua-comparacion"
+              src={aguaComparacion}
+              ancho={1376}
+              alto={768}
+              alt="Comparación del agua antes y después del filtro: a la izquierda, agua turbia con partículas, sedimentos, microorganismos, residuos orgánicos y olor, pH ácido de 5.0 a 6.5; al centro, el proceso de filtrado; a la derecha, agua transparente con contaminantes eliminados, filtración por carbón activado y mineralización, y pH alcalino de 7.5 a 8.5."
+              className="h-[clamp(58px,8.5vh,96px)] shrink-0"
+              imgClassName="aspect-[1376/768]"
+            />
+          </div>
           <EscalaPh ph={ph} />
         </motion.div>
         {pruebas.opiniones.map((o) => (
@@ -80,7 +94,7 @@ export default function Resultados() {
       </motion.div>
 
       <p className="text-[16px] text-niebla">
-        Opiniones de conocidos y familiares cercanos. Comparación del agua antes y después del filtro: <Missing>fotos del agua antes y después</Missing>
+        Opiniones de conocidos y familiares cercanos. La imagen junto al pH compara el agua antes y después del filtro (tócala para ampliarla).
       </p>
     </div>
   );

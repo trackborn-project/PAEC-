@@ -193,6 +193,11 @@ test('info nueva: los datos de notas.md, filtro.jpg e inventario aparecen en la 
     'estados de sequía', 'relevador', 'batería de 5', 'toma el agua del filtro', 'carbonato de calcio', 'piedra pómez',
     'silicio, óxido de hierro, aluminio y calcio', 'bajo 15', 'notificación al teléfono',
     'Arboleda en los andenes', 'canchas de fútbol y básquetbol', 'Casi nulo',
+    // notas.md, ACTUALIZAR (diapositivas 3, 10, 14, 15 y 18)
+    'DRYBOT', 'Validado por usuarios', 'corriendo por las calles donde caminan todos los días nuestras familias e hijos',
+    'GPIO25', 'GPIO21 SDA', 'Batería externa', 'Tubo de succión', 'Manguera de descarga', 'medidas por confirmar', 'No aplica: el sistema no usa componentes neumáticos',
+    'sin plagas, sin mosquitos ni impurezas', 'mínimo 730 ml', 'No son mediciones de nuestro filtro',
+    'Distingue entre quienes actúan por iniciativa propia', 'Friedrich Nietzsche',
   );
   const norm = (s) => s.replace(/\s+/g, ' ').toLowerCase();
   const plano = norm(texto);
@@ -251,4 +256,33 @@ test.describe('movimiento reducido', () => {
     await page.evaluate(() => window.despiece.irEtapa(6));
     expect(Date.now() - t0).toBeLessThan(400);
   });
+});
+
+test('imágenes nuevas: cargan sin 404, con alt, lazy y sin deformarse', async ({ page }) => {
+  const fallas = [];
+  page.on('response', (r) => r.status() >= 400 && fallas.push(r.url()));
+  for (const n of [SECCIONES.indexOf('resultados') + 1, SECCIONES.indexOf('esperados') + 1]) {
+    await page.goto(`/#${n}`);
+    await espera(page, 1500);
+    const img = page.locator('button[aria-label^="Ampliar imagen"] img').first();
+    await img.scrollIntoViewIfNeeded();
+    await expect.poll(() => img.evaluate((i) => i.complete && i.naturalWidth > 0), { timeout: 5000 }).toBe(true);
+    const d = await img.evaluate((i) => ({ alt: i.alt, lazy: i.loading, nat: i.naturalWidth / i.naturalHeight, box: i.getBoundingClientRect().width / i.getBoundingClientRect().height }));
+    expect(d.alt.length).toBeGreaterThan(20);
+    expect(d.lazy).toBe('lazy');
+    expect(Math.abs(d.box - d.nat)).toBeLessThan(0.05);
+    // Se amplía sin recortarse y se cierra con Esc.
+    await page.locator('button[aria-label^="Ampliar imagen"]').first().click();
+    const dialogo = page.getByRole('dialog');
+    await expect(dialogo).toBeVisible();
+    await espera(page, 600);
+    const r = await dialogo.boundingBox();
+    const vp = page.viewportSize();
+    expect(r.width).toBeLessThanOrEqual(vp.width + 1);
+    expect(r.height).toBeLessThanOrEqual(vp.height + 1);
+    await page.keyboard.press('Escape');
+    await expect(dialogo).toHaveCount(0);
+    expect(await page.evaluate(() => location.hash)).toBe(`#${n}`);
+  }
+  expect(fallas).toEqual([]);
 });

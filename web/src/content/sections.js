@@ -54,7 +54,7 @@ export const sections = [
       'El ámbito de nuestra problemática es la sociedad; también toca el ambiente y la tecnología. La problemática es el desperdicio de agua.',
       'Además, la humedad de la tierra no siempre es fácil de distinguir a simple vista, así que es difícil saber cuándo una planta necesita agua.',
       'En nuestro plantel identificamos una necesidad: las zonas verdes reciben poco mantenimiento. Pensamos en los alumnos como las personas usuarias del prototipo, y lo probaremos en macetas.',
-      'Queremos ser claros: esta necesidad todavía debe comprobarse con observación y con la opinión de quienes cuidan las plantas. Por eso la presentamos como una necesidad por validar, no como un problema ya demostrado.',
+      'Fuera del plantel, en los hogares de nuestra comunidad y en sus calles es común ver agua desperdiciándose y corriendo por las calles donde caminan todos los días nuestras familias e hijos. A causa de esto diseñamos DRYBOT, nuestro querido y probado prototipo, ya validado por usuarios.',
       'Las zonas verdes del plantel son la arboleda de los andenes, las áreas cerca de la cafetería y las zonas recreativas y de ejercicio, como las canchas de fútbol y básquetbol.',
       'Hoy su riego es casi nulo. Al estudiar el riego de estas áreas tuvimos la idea de empezar este prototipo.',
     ],
@@ -155,12 +155,13 @@ export const sections = [
     short: 'Diagramas',
     title: 'Diagramas del sistema',
     mood: 0.53,
-    steps: 1,
+    steps: 5, // control, potencia, hidráulico, mecánico, neumático
     notes: [
-      'Además del diagrama de control y potencia, el sistema tiene un diagrama electrónico, uno hidráulico y uno mecánico.',
-      'El recorrido hidráulico es: condensado del aire acondicionado, filtro de tres etapas, balde, bomba y plantas.',
-      'El diagrama neumático no aplica: el sistema no usa componentes neumáticos.',
-      '(Espacios reservados: falta insertar los diagramas.)',
+      'Control: el sensor de humedad envía una lectura analógica al ESP32. El ESP32 manda la orden por el GPIO25 al relevador, que conecta o detiene la bomba. La pantalla OLED se conecta por I2C, en los pines 21 y 22, y solo informa el estado.',
+      '(→) Potencia: el ESP32 solo da la señal de control. El relevador conecta o desconecta la energía de la batería externa de 5 volts hacia la bomba. La bomba nunca se alimenta desde un pin del ESP32.',
+      '(→) Hidráulico: el condensado del aire acondicionado entra por el embudo, pasa por gravedad por las tres etapas y cae al balde. La bomba lo succiona y lo manda por la manguera hacia las plantas.',
+      '(→) Mecánico: son módulos cónicos apilados sobre el balde, con la bomba a un costado. Está basado en la imagen del prototipo; las medidas están por confirmar.',
+      '(→) Neumático: no aplica, el sistema no usa componentes neumáticos.',
     ],
   },
   {
@@ -215,7 +216,8 @@ export const sections = [
     steps: 1,
     notes: [
       'Probamos que las conexiones estuvieran correctas según la logística planeada: funcionaron como debían y la pantalla reflejó los resultados de manera correcta.',
-      'Dejamos el agua guardada durante 2 días para probar el sellado contra plagas y mosquitos.',
+      'Dejamos el balde sellado durante 2 días para probar el sellado contra plagas y mosquitos. Al destaparlo, el agua estaba en buen estado: sin plagas, sin mosquitos ni impurezas.',
+      '(Toca la imagen para ampliar la comparación del agua antes y después del filtro.)',
       'Y medimos el pH después de filtrar agua estancada muy sucia: quedó entre 8 y 9; el agua neutra tiene 7.',
       'También dimos a probar el prototipo a conocidos y familiares cercanos. (Lee una de las opiniones.)',
     ],
@@ -229,9 +231,9 @@ export const sections = [
     steps: 1,
     notes: [
       'Así interpretamos los resultados esperados. El riego sigue un modelo sencillo: la bomba se enciende cuando la lectura baja de 15 y se apaga cuando llega a 100; entre esos valores mantiene su estado.',
-      'Esperamos aprovechar el agua de condensado de los aires acondicionados en lugar de desperdiciarla, y regar solo cuando la tierra lo necesita.',
+      'Esperamos aprovechar el agua de condensado de los aires acondicionados en lugar de desperdiciarla, y regar solo cuando la tierra lo necesita. Por cada litro que entra al filtro se rescatan mínimo 730 mililitros, ya filtrados y libres de impurezas.',
+      'El gráfico de la derecha es una referencia que compara métodos de filtración en general sobre 1000 mililitros; no son mediciones de nuestro filtro.',
       'En las pruebas, el pH del agua filtrada quedó entre 8 y 9; el agua neutra tiene 7.',
-      '(Espacios reservados: falta insertar las gráficas con datos medidos.)',
     ],
   },
   {
@@ -272,7 +274,7 @@ export const sections = [
     steps: 1,
     notes: [
       'Para cerrar: este prototipo nos sirvió para relacionar la mecatrónica con algo cotidiano, el cuidado de las plantas, y para conversar sobre el uso responsable del agua.',
-      'Lo que queremos aprender es cómo observar una situación, probar una idea y usar los resultados para mejorarla.',
+      'Cerramos con una frase que atribuimos a Friedrich Nietzsche: distingue entre quienes actúan por iniciativa propia, los creadores, y quienes solo se quejan o culpan al entorno, el resentimiento. Un buen ambiente laboral se construye asumiendo responsabilidad y aportando soluciones.',
       'Gracias por su atención. ¿Tienen alguna pregunta?',
     ],
   },

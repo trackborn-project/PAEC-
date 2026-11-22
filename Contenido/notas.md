@@ -173,3 +173,28 @@ como las canchas de futbol y basketball
 
 - Frecuencia actual de riego: Actualmente la frecuencia del riego en estas zonas es casi nula, estudiando el riego dentro de el plantel de estas areas tuvimos
 la idea de empezar este prototipo 
+
+ACTUALIZAR:
+
+-Diapositiva 3:
+CONTEXTO EXTERNO DEL PLANTEL:
+#En los hogares de nuestra comunidad y en las mismas calles de estos es comun ver agua desperdiciandose, y desbocar en las calles donde caminan todos los dias
+nuestras familias e hijos, a causa de esto diseñamos el DRYBOT, nuestro querido y probado prototipo 
+
+VALIDADO POR USUARIOS 
+
+-Diapositiva 10 
+#AGREGAR DIAGRMAS DE CONTENIDO ESPECIFICADOS EN EL PROMPT
+
+-Diapositiva 14
+#Resultado del sellado antiplagas: Dejamos el balde sellado por 2 dias, cuando lo destapamos despus de este plazo vimos que el agua estaba en buen estado, sin plagas
+sin mosquitos ni impurezas
+#FOTOS DEL AGUA ANTES Y DESPUES EN CARPETA
+
+-Diapositiva 15
+#Litros de agua rescatados: Por cada litro de agua que ingresa al filtro, se rescatan minimo 730ml de 1000ml, 730ml los cuales ya estan filtrados y libres de impurezas
+#FOTO DEL GRAFICO EN CARPETA
+
+-Diapositiva 18 
+#FRASE FINAL DE CONCLUSION: Distinue entre quienes actuan por iniciativa propia (Creadores) y quienes solo se quejan o culpan al entorno (resentimiento). Un buen ambiente
+laboral se construye asumiendo responsabilidad y aportando soluciones -Friedrich Nietzsche-

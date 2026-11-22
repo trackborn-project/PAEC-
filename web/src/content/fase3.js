@@ -23,7 +23,8 @@ export const pruebas = {
       id: 'sellado',
       titulo: 'Sellado anti plagas',
       prueba: 'Dejamos que el agua fluyera y estuviera guardada durante 2 días, para probar el sellado contra plagas y mosquitos.',
-      resultado: null, // notas.md no dice el resultado de esta prueba en particular
+      // notas.md, "ACTUALIZAR › Diapositiva 14"
+      resultado: 'Al destapar el balde después de 2 días, el agua estaba en buen estado: sin plagas, sin mosquitos ni impurezas.',
     },
     {
       id: 'ph',
@@ -105,5 +106,12 @@ export const mejoras = [
   },
 ];
 
-// notas.md, "Frase final de la conclusión" (vacío por ahora)
-export const fraseFinal = null;
+// notas.md, "ACTUALIZAR › Diapositiva 18" (atribuida por el equipo a Friedrich Nietzsche).
+export const fraseFinal = {
+  texto:
+    'Distingue entre quienes actúan por iniciativa propia (Creadores) y quienes solo se quejan o culpan al entorno (resentimiento). Un buen ambiente laboral se construye asumiendo responsabilidad y aportando soluciones.',
+  autor: 'Friedrich Nietzsche',
+};
+
+// notas.md, "ACTUALIZAR › Diapositiva 15"
+export const aguaRescatada = { entra: 1000, rescata: 730 };

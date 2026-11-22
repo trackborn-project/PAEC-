@@ -1,11 +1,12 @@
 import { motion } from 'motion/react';
 import { Parte } from '../../components/Parte.jsx';
-import { Insertar } from '../../components/Missing.jsx';
 import { container, item } from '../../components/stagger.js';
-import { pruebas } from '../../content/fase3.js';
+import { aguaRescatada, pruebas } from '../../content/fase3.js';
+import { ImagenAmpliable } from '../../components/ImagenAmpliable.jsx';
+import graficoAgua from '../../assets/grafico-agua.webp';
 
 // V. Resultados esperados: modelo de riego con los valores del equipo (notas.md, "Umbral de riego")
-// e interpretación. Sin datos medidos de consumo: quedan como [INSERTAR …].
+// e interpretación. Agua rescatada y gráfico de referencia: notas.md, "ACTUALIZAR › Diapositiva 15".
 const UMBRAL = 15;
 const DETENER = 100;
 
@@ -49,19 +50,31 @@ export default function Esperados() {
           <span className="text-[clamp(16px,1.15vw,19px)] leading-snug text-hueso/85">
             Se espera aprovechar esa agua en lugar de desperdiciarla. pH medido después del filtro: {ph.min}–{ph.max} (agua neutra: {ph.neutro}).
           </span>
-          <span className="mt-auto text-[18px]">
-            <Insertar>LITROS DE CONDENSADO RECUPERADOS</Insertar>
-          </span>
+          {/* Agua rescatada por cada litro que entra al filtro */}
+          <div className="mt-auto flex flex-col gap-2 border-t border-white/10 pt-2" data-testid="agua-rescatada">
+            <span className="text-[clamp(16px,1.15vw,19px)] leading-snug">
+              Por cada litro que entra al filtro se rescatan <strong className="text-agua">mínimo {aguaRescatada.rescata} ml</strong> de {aguaRescatada.entra} ml, ya filtrados y libres de impurezas.
+            </span>
+            <div className="h-2 overflow-hidden rounded-full bg-white/10" role="img" aria-label={`${aguaRescatada.rescata} de ${aguaRescatada.entra} ml`}>
+              <div className="h-full rounded-full bg-agua shadow-[0_0_12px_rgb(57_255_136/0.6)]" style={{ width: `${(aguaRescatada.rescata / aguaRescatada.entra) * 100}%` }} />
+            </div>
+          </div>
         </motion.div>
 
-        {/* Gráfica pendiente */}
-        <motion.div variants={item} className="glass flex flex-col items-start justify-center gap-3 rounded-[24px] px-6 py-5">
-          <span className="text-[17px] text-niebla">Gráfica de humedad y riego</span>
-          <span className="text-[clamp(16px,1.15vw,19px)] leading-snug text-hueso/85">
-            Lecturas del sensor antes y después de cada riego, con el umbral de {UMBRAL} y el corte en {DETENER}.
-          </span>
-          <span className="text-[18px]">
-            <Insertar>GRÁFICA DE HUMEDAD CON DATOS MEDIDOS</Insertar>
+        {/* Gráfico de referencia (Contenido/grafico-agua.jpg); clic para ampliar */}
+        <motion.div variants={item} className="glass flex flex-col gap-3 rounded-[24px] px-6 py-5">
+          <span className="text-[17px] text-niebla">Gráfico de referencia</span>
+          <ImagenAmpliable
+            id="grafico-agua"
+            src={graficoAgua}
+            ancho={1376}
+            alto={768}
+            alt="Gráfico de barras de referencia sobre 1000 ml de agua: filtración multimedia 50, 950 y 50; ultrafiltración 75, 925 y 75; ósmosis inversa de agua salobre 800 y 200; ósmosis inversa de agua de mar 575; ajuste de pH 998 y 2."
+            className="w-full"
+            imgClassName="aspect-[1376/768]"
+          />
+          <span className="text-[clamp(15px,1.05vw,18px)] leading-snug text-hueso/85">
+            Compara métodos de filtración en general sobre 1000 ml de agua. No son mediciones de nuestro filtro.
           </span>
         </motion.div>
       </motion.div>

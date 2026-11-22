@@ -53,3 +53,7 @@ async function boceto(file, name) {
 }
 await boceto('Sistema - Boceto.png', 'boceto-sistema');
 await boceto('filtro - Boceto.jpg', 'boceto-filtro');
+
+// Diapositivas 14 y 15: comparación del agua y gráfico de referencia (fotos JPG, sin recorte).
+await convert('agua-comparacion.jpg', 'agua-comparacion');
+await convert('grafico-agua.jpg', 'grafico-agua');

@@ -3,7 +3,6 @@ import { CrackedSoil } from './CrackedSoil.jsx';
 import { GlassCard } from '../../components/GlassCard.jsx';
 import { container, item } from '../../components/stagger.js';
 import { Parte } from '../../components/Parte.jsx';
-import { Insertar } from '../../components/Missing.jsx';
 
 export default function Problema() {
   return (
@@ -33,12 +32,14 @@ export default function Problema() {
             <p className="text-[22px] text-niebla">
               Dirigido a: los alumnos y a quienes cuidan las plantas. Se probará en macetas.
             </p>
-            <p className="text-[22px] text-niebla">
-              Contexto externo del plantel: <Insertar>CONTEXTO EXTERNO DEL PLANTEL</Insertar>
+            <p className="text-[22px] leading-snug text-niebla">
+              Contexto externo del plantel: en los hogares de nuestra comunidad y en sus calles es común ver agua
+              desperdiciándose y corriendo por las calles donde caminan todos los días nuestras familias e hijos. A causa
+              de esto diseñamos <strong className="font-semibold text-hueso">DRYBOT</strong>, nuestro querido y probado prototipo.
             </p>
             <p className="mt-1 inline-flex w-fit items-center gap-3 rounded-full border border-ambar/40 bg-ambar/10 px-4 py-1.5 text-[20px] leading-snug text-ambar">
               <span className="h-2.5 w-2.5 rounded-full bg-ambar" aria-hidden />
-              Por validar con observación y opinión de usuarios
+              Validado por usuarios
             </p>
           </GlassCard>
         </motion.div>
