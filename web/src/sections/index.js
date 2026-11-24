@@ -16,6 +16,7 @@ import Objetivos from './objetivos/Objetivos.jsx';
 import Bocetos from './bocetos/Bocetos.jsx';
 import Diagramas from './diagramas/Diagramas.jsx';
 import Esperados from './esperados/Esperados.jsx';
+import Drybot from './drybot/Drybot.jsx';
 
 // id de sección (content/sections.js) → componente.
 export const sectionComponents = {
@@ -37,4 +38,5 @@ export const sectionComponents = {
   bocetos: Bocetos,
   diagramas: Diagramas,
   esperados: Esperados,
+  drybot: Drybot,
 };

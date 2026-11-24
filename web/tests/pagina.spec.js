@@ -8,7 +8,7 @@ const CONTENIDO = path.resolve(here, '../../Contenido');
 const CAPTURAS = path.resolve(here, '../../capturas');
 
 // Secciones según src/content/sections.js (id → número de diapositiva).
-const SECCIONES = ['portada', 'paec', 'problema', 'objetivos', 'bocetos', 'diseno', 'anatomia', 'filtro', 'detector', 'diagramas', 'costos', 'solucion', 'demo', 'resultados', 'esperados', 'aprendizajes', 'mejoras', 'conclusion'];
+const SECCIONES = ['portada', 'paec', 'problema', 'objetivos', 'bocetos', 'diseno', 'anatomia', 'filtro', 'detector', 'diagramas', 'costos', 'solucion', 'demo', 'resultados', 'esperados', 'aprendizajes', 'mejoras', 'conclusion', 'drybot'];
 const N_FILTRO = SECCIONES.indexOf('filtro') + 1;
 const N_COSTOS = SECCIONES.indexOf('costos') + 1;
 
@@ -285,4 +285,40 @@ test('imágenes nuevas: cargan sin 404, con alt, lazy y sin deformarse', async (
     expect(await page.evaluate(() => location.hash)).toBe(`#${n}`);
   }
   expect(fallas).toEqual([]);
+});
+
+test('DRYBOT (19): navegación, texto accesible, efecto al mover el puntero y pausa en reposo', async ({ page }, info) => {
+  const errores = vigilarErrores(page);
+  const n = SECCIONES.indexOf('drybot') + 1;
+  await page.goto(`/#${n - 1}`);
+  await espera(page, 900);
+  await page.keyboard.press('ArrowRight');
+  await expect.poll(() => page.evaluate(() => location.hash)).toBe(`#${n}`);
+  // La palabra existe en el DOM aunque se dibuje en canvas.
+  await expect(page.locator('main h2', { hasText: 'DRYBOT' })).toHaveCount(1);
+  const modo = await page.getByTestId('drybot').getAttribute('data-modo');
+  expect(['gl', 'svg']).toContain(modo);
+  if (modo === 'gl') {
+    const canvas = page.getByTestId('drybot-canvas');
+    await expect.poll(() => canvas.getAttribute('data-intro'), { timeout: 5000 }).toBe('1.00');
+    if (info.project.name !== 'movil') {
+      const antes = Number(await canvas.getAttribute('data-cuadros'));
+      const vp = page.viewportSize();
+      for (let i = 0; i <= 10; i++) {
+        await page.mouse.move(vp.width * (0.2 + i * 0.06), vp.height / 2);
+        await espera(page, 16);
+      }
+      await expect(canvas).toHaveAttribute('data-estado', 'activo');
+      expect(Number(await canvas.getAttribute('data-cuadros'))).toBeGreaterThan(antes);
+    }
+    // Sin movimiento, el render se pausa.
+    await expect(canvas).toHaveAttribute('data-estado', 'pausado', { timeout: 8000 });
+  }
+  // Al regresar, la diapositiva se desmonta (recursos liberados) y la 18 sigue bien.
+  await page.keyboard.press('ArrowLeft');
+  await expect.poll(() => page.evaluate(() => location.hash)).toBe(`#${n - 1}`);
+  await espera(page, 600);
+  await expect(page.getByTestId('drybot-canvas')).toHaveCount(0);
+  await expect(page.locator('main')).toContainText('¿Preguntas?');
+  expect(errores).toEqual([]);
 });

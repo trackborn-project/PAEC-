@@ -277,6 +277,17 @@ export const sections = [
       'Gracias por su atención. ¿Tienen alguna pregunta?',
     ],
   },
+  {
+    id: 'drybot',
+    short: 'DryBot',
+    title: 'DRYBOT',
+    mood: 1,
+    steps: 1,
+    notes: [
+      'DRYBOT, nuestro prototipo.',
+      '(Mueve el ratón o el dedo sobre las letras: se deforman como líquido y regresan a su forma.)',
+    ],
+  },
 ];
 
 // Anchura del eje wdth de Archivo según el ánimo: 108 (seco) → 94 (agua). Cambio sutil, tipografía limpia.

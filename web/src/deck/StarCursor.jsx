@@ -110,6 +110,8 @@ function StarCanvas() {
 
     const onMove = (e) => {
       if (e.pointerType && e.pointerType !== 'mouse') return;
+      // La diapositiva DRYBOT tiene su propio brillo de cursor.
+      if (e.target?.closest?.('[data-sin-estrellas]')) return;
       const x = e.clientX;
       const y = e.clientY;
       const dist = last ? Math.hypot(x - last.x, y - last.y) : 0;
