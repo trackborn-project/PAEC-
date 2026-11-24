@@ -3,8 +3,7 @@ import { motion } from 'motion/react';
 import { useReduce } from '../../deck/MotionPref.jsx';
 import { RELIEVE, RENDER, SIM, VERT } from './drybotShaders.js';
 
-// ───────────────────────── Ajustes del efecto ─────────────────────────
-// Cambia estos valores para afinar la sensación. Todos son seguros de tocar.
+
 const WORD = 'DRYBOT';
 const FLUID_STRENGTH = 1.0; // cuánto se deforman las letras con el líquido (0.4 sutil … 1.6 exagerado)
 const MAX_DISPLACEMENT = 0.05; // tope suave de la deformación, en fracción de la pantalla
