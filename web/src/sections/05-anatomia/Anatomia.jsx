@@ -10,11 +10,11 @@ import { Parte } from '../../components/Parte.jsx';
 // Lo que notas.md no explica queda marcado como [FALTA].
 export const PARTS = [
   {
-    id: 'tapa',
-    name: 'Tapa superior',
+    id: 'pantalla',
+    name: 'Pantalla',
     x: 56,
     y: 9,
-    text: 'Se retira para acceder al interior de la caja.',
+    text: 'Aquí es donde se reflejan los resultados de las sondas.',
     side: 'bottom',
   },
   {
@@ -47,14 +47,6 @@ export const PARTS = [
     x: 52.5,
     y: 47,
     text: 'Pieza conectada con cables rojo y negro.',
-    side: 'right',
-  },
-  {
-    id: 'ventana',
-    name: 'Ventana frontal',
-    x: 21,
-    y: 46,
-    text: 'Tapa transparente con marco; deja ver la tarjeta electrónica.',
     side: 'right',
   },
   {
@@ -210,7 +202,7 @@ export default function Anatomia() {
           />
           <motion.img
             src={explosionada}
-            alt="Vista explosionada: tapa superior separada, ventana frontal abierta, tarjeta electrónica, fuente de alimentación de 3.3 - 5 V con cables, puerto USB-C y sondas."
+            alt="Vista explosionada: pantalla en la parte superior, tarjeta electrónica, fuente de alimentación de 3.3 - 5 V con cables, puerto USB-C y sondas."
             className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_30px_40px_rgb(0_0_0/0.5)]"
             initial={false}
             animate={exploded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.08 }}

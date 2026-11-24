@@ -107,12 +107,12 @@ export const sections = [
     short: 'Explosionada',
     title: 'Vista explosionada del prototipo',
     mood: 0.35,
-    steps: 11, // armado, despiece y 9 piezas
+    steps: 10, // armado, despiece y 8 piezas
     notes: [
       'Este es el módulo armado. (→) Al separarlo vemos sus piezas.',
-      '(→ en cada pieza) Arriba está la tapa, que se retira para entrar a la caja, y junto a ella el botón de encendido, que permite al dispositivo descansar o ahorrar batería.',
+      '(→ en cada pieza) Arriba está la pantalla, donde se reflejan los resultados de las sondas, y junto a ella el botón de encendido, que permite al dispositivo descansar o ahorrar batería.',
       'La carcasa, de MDF barnizado, aluminio y polímero de alta densidad, protege la electrónica. Adentro está la tarjeta electrónica; según nuestras notas, ahí está el ESP32, que interpreta la lectura y decide si hace falta regar.',
-      'También están la fuente de alimentación de 3.3 a 5 volts, conectada con cables, la ventana frontal transparente, el puerto USB-C y un orificio lateral.',
+      'También están la fuente de alimentación de 3.3 a 5 volts, conectada con cables, el puerto USB-C y un orificio lateral.',
       'Abajo están las sondas: se entierran en la tierra de la maceta y con ellas el sensor obtiene la lectura.',
     ],
   },
