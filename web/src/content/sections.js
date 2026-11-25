@@ -154,13 +154,12 @@ export const sections = [
     short: 'Diagramas',
     title: 'Diagramas del sistema',
     mood: 0.53,
-    steps: 5, // control, potencia, hidráulico, mecánico, neumático
+    steps: 4, // control, potencia, hidráulico, mecánico
     notes: [
       'Control: el sensor de humedad envía una lectura analógica al ESP32. El ESP32 manda la orden por el GPIO25 al relevador, que conecta o detiene la bomba. La pantalla OLED se conecta por I2C, en los pines 21 y 22, y solo informa el estado.',
       '(→) Potencia: el ESP32 solo da la señal de control. El relevador conecta o desconecta la energía de la batería externa de 5 volts hacia la bomba. La bomba nunca se alimenta desde un pin del ESP32.',
       '(→) Hidráulico: el condensado del aire acondicionado entra por el embudo, pasa por gravedad por las tres etapas y cae al balde. La bomba lo succiona y lo manda por la manguera hacia las plantas.',
       '(→) Mecánico: son módulos cónicos apilados sobre el balde, con la bomba a un costado. Está basado en la imagen del prototipo; las medidas están por confirmar.',
-      '(→) Neumático: no aplica, el sistema no usa componentes neumáticos.',
     ],
   },
   {

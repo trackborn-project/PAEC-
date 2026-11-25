@@ -195,7 +195,7 @@ test('info nueva: los datos de notas.md, filtro.jpg e inventario aparecen en la 
     'Arboleda en los andenes', 'canchas de fútbol y básquetbol', 'Casi nulo',
     // notas.md, ACTUALIZAR (diapositivas 3, 10, 14, 15 y 18)
     'DRYBOT', 'Validado por usuarios', 'corriendo por las calles donde caminan todos los días nuestras familias e hijos',
-    'GPIO25', 'GPIO21 SDA', 'Batería externa', 'Tubo de succión', 'Manguera de descarga', 'medidas por confirmar', 'No aplica: el sistema no usa componentes neumáticos',
+    'GPIO25', 'GPIO21 SDA', 'Batería externa', 'Tubo de succión', 'Manguera de descarga', 'medidas por confirmar',
     'sin plagas, sin mosquitos ni impurezas', 'mínimo 730 ml', 'No son mediciones de nuestro filtro',
     'Distingue entre quienes actúan por iniciativa propia', 'Friedrich Nietzsche',
   );

@@ -115,13 +115,6 @@ const DIAGRAMAS = [
     ],
     nota: 'Basado en la imagen del prototipo · medidas por confirmar.',
   },
-  {
-    id: 'neumatico',
-    titulo: 'Neumático',
-    texto: 'No aplica: el sistema no usa componentes neumáticos.',
-    filas: [],
-    nota: null,
-  },
 ];
 
 function Nodo({ n, s }) {
